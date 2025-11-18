@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
-import logoKoken from './assets/logo_koken_1.png'
-import { FiInstagram, FiFacebook, FiMail, FiPhone, FiMapPin } from 'react-icons/fi'
+import { FiInstagram, FiFacebook, FiMail, FiPhone, FiMapPin, FiMenu, FiX } from 'react-icons/fi'
 import { GiCupcake, GiCroissant, GiPartyFlags } from 'react-icons/gi'
 import { FaBirthdayCake } from 'react-icons/fa'
+
+// Importar logo e imagen maestra
+import logoKoken from './assets/logo_koken_1.png'
+import maestraImg from './assets/maestra.jpg'
 
 // Importar imágenes de productos
 import img1 from './assets/0949b276-5fa1-493e-af1d-533773d20b84.jpg'
@@ -10,14 +13,14 @@ import img2 from './assets/1399be21-ed8e-4a61-9e0f-e88ef8bde347.jpg'
 import img3 from './assets/160e2cbe-833c-43f1-a99b-c71bc4c22b31.jpg'
 import img4 from './assets/1be76dcc-5711-4d77-9fe6-67583b5cf690.jpg'
 import img5 from './assets/1db12ef6-8683-4b67-8390-5d9193fab02c.jpg'
-import img6 from './assets/2ab166a0-72db-43d7-a724-42f116c8ca38.jpg'
+import img6 from './assets/maestra.jpg'
 import img7 from './assets/2ee8c29d-9a13-4f6a-a915-6c92064978e4.jpg'
 import img8 from './assets/3cac8862-3147-4a6f-b1ab-c44f50ab95ca.jpg'
 import img9 from './assets/4e622e9a-48f2-40dd-ad61-8683131811e8.jpg'
 import img10 from './assets/4e978bb0-e7d1-40cd-b84a-0b58812d17eb.jpg'
 import img11 from './assets/60df2871-43c7-493f-a0ce-3c2232ce5e3c.jpg'
 import img12 from './assets/636d7573-90bd-4e27-8e15-b67bdf1e64ec.jpg'
-import img13 from './assets/6721949c-5b1b-4d68-831b-386565d6cc8c.jpg'
+import img13 from './assets/b9bd8aec-9231-41e8-ad01-4aaf4e032ba8.jpg'
 import img14 from './assets/69e6390f-a19b-460a-8c73-94e54a7216c4.jpg'
 import img15 from './assets/6ad1f585-c2de-4c06-94e1-18e2abbcedee.jpg'
 import img16 from './assets/73f4c73a-612f-4fde-9092-026c6b653bca.jpg'
@@ -44,223 +47,502 @@ function App() {
 }
 
 function LandingPage() {
-  const [heroVariant, setHeroVariant] = useState(3)
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100)
+      const currentScrollY = window.scrollY
+      setIsScrolled(currentScrollY > 50)
     }
-    window.addEventListener('scroll', handleScroll)
+    
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <div className="min-h-screen bg-neutralLight overflow-x-hidden relative">
-      {/* Header Variant 4: Minimalista transparente */}
-      {heroVariant === 4 && (
-        <header className={`fixed top-0 left-0 right-0 z-40 h-24 shadow-lg transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-white backdrop-blur-2xl border-b border-primary/20' 
-            : 'bg-white/10 backdrop-blur-xl border-b border-white/20'
+    <div className="min-h-screen bg-cream-50 overflow-x-hidden relative">
+      {/* Header Premium con Glassmorphism */}
+      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled 
+          ? 'bg-white/80 backdrop-blur-xl shadow-elegant border-b border-gold-200/30' 
+          : 'bg-transparent'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20 md:h-24">
+            {/* Logo */}
+            <div className="flex items-center group cursor-pointer">
+              <h1 className="font-cooper font-black tracking-tight text-primary text-3xl md:text-4xl lg:text-5xl transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(220,60,70,0.6)] group-hover:text-shadow-lg" style={{ 
+                textShadow: 'none',
+                transition: 'all 0.5s ease'
+              }}>
+                <span className="inline-block group-hover:animate-pulse">KOKEN</span>
+              </h1>
+            </div>
+            
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center gap-10">
+              {['Productos', 'Nosotros', 'Servicios', 'Contacto'].map((item) => (
+                <a
+                  key={item}
+                  href={`#${item.toLowerCase()}`}
+                  className={`relative font-cormorant text-3xl font-medium transition-all duration-300 group ${
+                    isScrolled 
+                      ? 'text-charcoal-700 hover:text-gold-600' 
+                      : 'text-white/90 hover:text-white'
+                  }`}
+                >
+                  {item}
+                  <span className={`absolute -bottom-1 left-0 w-0 h-1 transition-all duration-300 group-hover:w-full ${
+                    isScrolled ? 'bg-gold-500' : 'bg-white'
+                  }`}></span>
+                </a>
+              ))}
+            </nav>
+
+            {/* CTA Button Desktop */}
+            <div className="hidden lg:block">
+              <a
+                href="#contacto"
+                className={`relative overflow-hidden px-8 py-4 rounded-full font-cormorant font-semibold text-lg tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-gold ${
+                  isScrolled
+                    ? 'bg-gradient-to-r from-gold-400 to-gold-600 text-white'
+                    : 'bg-white text-primary border-2 border-white'
+                }`}
+              >
+                <span className="relative z-10">Contactanos</span>
+                <div className="absolute inset-0 bg-shimmer opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+              </a>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className={`lg:hidden p-2 rounded-lg transition-all duration-300 ${
+                isScrolled 
+                  ? 'text-charcoal-800 hover:bg-gold-100' 
+                  : 'text-white hover:bg-white/10'
+              }`}
+            >
+              {isMobileMenuOpen ? <FiX className="text-2xl" /> : <FiMenu className="text-2xl" />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`lg:hidden transition-all duration-500 overflow-hidden ${
+          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
-          <div className="mx-auto px-8 w-full h-full">
-            <div className="flex items-center justify-between h-full">
-              <div className="flex items-center space-x-4">
-                <div className={`w-14 h-14 backdrop-blur-md rounded-2xl flex items-center justify-center border transition-all duration-300 ${
-                  isScrolled 
-                    ? 'bg-primary/10 border-primary/30' 
-                    : 'bg-white/20 border-white/30'
-                }`}>
-                  <img src={logoKoken} alt="Koken" className="h-10 w-10" />
-                </div>
-                <div>
-                  <h1 className={`text-2xl font-black font-brand tracking-tight transition-colors duration-300 ${
-                    isScrolled ? 'text-primary' : 'text-white'
-                  }`}>KOKEN</h1>
-                  <p className={`text-xs tracking-widest transition-colors duration-300 ${
-                    isScrolled ? 'text-primary/80' : 'text-white/80'
-                  }`}>MAR DEL PLATA</p>
-                </div>
-              </div>
-              
-              <nav className="hidden md:flex items-center gap-12">
-                <a href="#productos" className={`transition-all duration-300 font-bold text-sm tracking-widest ${
-                  isScrolled 
-                    ? 'text-primary/90 hover:text-primary drop-shadow-sm' 
-                    : 'text-white/90 hover:text-white'
-                }`}>PRODUCTOS</a>
-                <a href="#nosotros" className={`transition-all duration-300 font-bold text-sm tracking-widest ${
-                  isScrolled 
-                    ? 'text-primary/90 hover:text-primary drop-shadow-sm' 
-                    : 'text-white/90 hover:text-white'
-                }`}>NOSOTROS</a>
-                <a href="#servicios" className={`transition-all duration-300 font-bold text-sm tracking-widest ${
-                  isScrolled 
-                    ? 'text-primary/90 hover:text-primary drop-shadow-sm' 
-                    : 'text-white/90 hover:text-white'
-                }`}>SERVICIOS</a>
-                <a href="#contacto" className={`transition-all duration-300 font-bold text-sm tracking-widest ${
-                  isScrolled 
-                    ? 'text-primary/90 hover:text-primary drop-shadow-sm' 
-                    : 'text-white/90 hover:text-white'
-                }`}>CONTACTO</a>
-              </nav>
-
-              <div className="flex items-center gap-3">
-                {[3, 4, 7].map((num) => (
-                  <button
-                    key={num}
-                    onClick={() => setHeroVariant(num)}
-                    className={`w-10 h-10 flex items-center justify-center font-black text-sm transition-all rounded-full ${
-                      heroVariant === num
-                        ? isScrolled 
-                          ? 'bg-primary text-white scale-110' 
-                          : 'bg-white text-primary scale-110'
-                        : isScrolled
-                          ? 'bg-primary/20 text-primary hover:bg-primary/30'
-                          : 'bg-white/20 text-white hover:bg-white/30'
-                    }`}
-                  >
-                    {num}
-                  </button>
-                ))}
-              </div>
-            </div>
+          <div className="bg-white/95 backdrop-blur-xl border-t border-gold-200/30 px-6 py-6 space-y-4">
+            {['Productos', 'Nosotros', 'Servicios', 'Contacto'].map((item) => (
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="block font-cormorant text-lg font-medium text-charcoal-700 hover:text-gold-600 transition-colors py-2"
+              >
+                {item}
+              </a>
+            ))}
+             <a
+               href="#contacto"
+               onClick={() => setIsMobileMenuOpen(false)}
+               className="block text-center bg-gradient-to-r from-gold-400 to-gold-600 text-white px-6 py-3 rounded-full font-cormorant font-semibold mt-4"
+             >
+               Contactanos
+             </a>
           </div>
-        </header>
-      )}
+        </div>
+      </header>
 
-      {/* Header Variant 7: Elegante con logo grande */}
-      {heroVariant === 7 && (
-        <header className="fixed top-0 left-0 right-0 z-40 bg-transparent h-24">
-          <div className="mx-auto px-8 w-full h-full">
-            <div className="flex items-center justify-between h-full">
-              <div className="flex items-center space-x-6">
-                <div className="relative">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-lg rounded-full border-2 border-white/40 flex items-center justify-center shadow-xl">
-                    <GiCroissant className="text-2xl text-white" />
+      {/* Hero Section - Sofisticado y Delicado */}
+      <section className="relative h-screen flex items-center overflow-hidden">
+        {/* Imagen de fondo completa */}
+        <div className="absolute inset-0">
+          <img 
+            src={maestraImg} 
+            alt="Fondo Koken" 
+            className="w-full h-full object-cover"
+          />
+          {/* Sin overlay - imagen completamente visible */}
+        </div>
+
+        {/* Efectos de luz muy sutiles - sin dorado intenso */}
+        <div className="absolute top-1/3 -left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/3 -right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        
+        <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto w-full">
+            {/* Grid con más espacio entre componentes */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 xl:gap-32 items-center">
+              
+              {/* 🎨 IZQUIERDA - Logo Estilo Sticker Premium */}
+              <div className="flex justify-center lg:justify-end opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+                <div className="relative group" style={{ perspective: '1200px' }}>
+                  {/* Resplandor ambiental suave */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-white/5 to-primary/6 rounded-full blur-3xl scale-110 group-hover:scale-[1.20] transition-all duration-700 animate-pulse" style={{ animationDuration: '6s' }}></div>
+                  
+                  {/* Contenedor del Sticker con efecto 3D mejorado */}
+                  <div 
+                    className="relative transition-all duration-700 animate-floatSoft group-hover:animate-none"
+                    style={{
+                      transform: 'translateZ(0) rotateX(3deg) rotateY(-3deg)',
+                      transformStyle: 'preserve-3d'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateZ(10px) rotateX(-2deg) rotateY(5deg) scale(1.03)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateZ(0) rotateX(3deg) rotateY(-3deg)';
+                    }}
+                  >
+                    {/* Sombra realista multicapa */}
+                    <div 
+                      className="absolute inset-0 rounded-full transition-all duration-700"
+                      style={{
+                        transform: 'translateZ(-15px) translateY(8px)',
+                        boxShadow: '0 20px 50px rgba(0, 0, 0, 0.35), 0 10px 20px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.15)',
+                        filter: 'blur(12px)',
+                        opacity: 0.7
+                      }}
+                    ></div>
+                    
+                    {/* Borde exterior sutil (simula grosor del sticker) */}
+                    <div 
+                      className="absolute -inset-1 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 transition-all duration-700"
+                      style={{
+                        transform: 'translateZ(18px)',
+                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
+                      }}
+                    ></div>
+                    
+                    {/* Sticker principal con textura */}
+                    <div 
+                      className="relative bg-white rounded-full p-3 sm:p-4 transition-all duration-700 overflow-hidden"
+                      style={{
+                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18), 0 5px 15px rgba(0, 0, 0, 0.12), inset 0 2px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.05)',
+                        transform: 'translateZ(20px)',
+                        background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #fcfcfc 100%)'
+                      }}
+                    >
+                      {/* Logo Principal con sombra interna */}
+                      <img 
+                        src={logoKoken} 
+                        alt="Koken Pastelería" 
+                        className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-60 lg:h-60 xl:w-68 xl:h-68 object-contain transition-transform duration-700"
+                        style={{
+                          filter: 'drop-shadow(0 3px 6px rgba(0, 0, 0, 0.12)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.08))',
+                          transform: 'translateZ(5px)'
+                        }}
+                      />
+                      
+                      {/* Brillo superior realista */}
+                      <div 
+                        className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/50 via-white/20 to-transparent rounded-t-full blur-sm pointer-events-none transition-opacity duration-700 group-hover:opacity-70"
+                        style={{ transform: 'translateY(-5%)' }}
+                      ></div>
+                      
+                      {/* Reflejo de luz lateral */}
+                      <div 
+                        className="absolute top-1/4 -left-4 w-12 h-3/4 bg-gradient-to-r from-white/30 to-transparent blur-lg pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-700"
+                        style={{ transform: 'rotate(-10deg)' }}
+                      ></div>
+                      
+                      {/* Textura sutil del material */}
+                      <div 
+                        className="absolute inset-0 rounded-full pointer-events-none opacity-20"
+                        style={{
+                          backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.8) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.6) 0%, transparent 40%)',
+                          mixBlendMode: 'overlay'
+                        }}
+                      ></div>
+                    </div>
+                    
+                    {/* Esquina levantada mejorada */}
+                    <div 
+                      className="absolute -top-2 -right-2 w-10 h-10 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
+                      style={{
+                        transform: 'rotate(45deg) translateZ(25px)',
+                        transformOrigin: 'bottom left'
+                      }}
+                    >
+                      <div 
+                        className="w-full h-full rounded-full"
+                        style={{
+                          background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.85) 50%, rgba(235,235,235,0.75) 100%)',
+                          boxShadow: '-3px 3px 12px rgba(0, 0, 0, 0.25), inset 1px -1px 2px rgba(0, 0, 0, 0.1)'
+                        }}
+                      ></div>
+                    </div>
+                    
+                    {/* Anillo de brillo sutil */}
+                    <div 
+                      className="absolute -inset-2 rounded-full border-2 border-white/20 pointer-events-none transition-all duration-700 group-hover:border-primary/20"
+                      style={{
+                        transform: 'translateZ(22px)',
+                        filter: 'blur(1px)'
+                      }}
+                    ></div>
                   </div>
                 </div>
-                <div>
-                  <h1 className="text-3xl font-black text-white font-cooper">KOKEN</h1>
-                  <div className="flex items-center gap-2 mt-1">
-                    <div className="h-px w-8 bg-white/40"></div>
-                    <p className="text-xs text-white/70 font-bold tracking-[0.2em]">ARTESANAL</p>
-                    <div className="h-px w-8 bg-white/40"></div>
+              </div>
+
+              {/* 📸 DERECHA - Imagen que Resalta */}
+              <div className="flex justify-center lg:justify-start opacity-0 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
+                <div className="relative group">
+                  {/* Fondo oscuro para contraste */}
+                  <div className="absolute inset-0 bg-charcoal-900/80 rounded-[40px] blur-3xl scale-110"></div>
+                  
+                  {/* Resplandor más fuerte */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-white/15 rounded-[40px] blur-2xl scale-105 group-hover:scale-110 transition-all duration-1000"></div>
+                  
+                  {/* Contenedor de la imagen - Con más contraste */}
+                  <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg aspect-[3/4] rounded-[40px] overflow-hidden border-2 border-white/25 hover:border-white/40 transition-all duration-700" style={{
+                    boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,255,255,0.1), inset 0 0 40px rgba(255,255,255,0.05)'
+                  }}>
+                    {/* Imagen maestra.jpg */}
+                    <img 
+                      src={maestraImg} 
+                      alt="Koken Pastelería - Presentación" 
+                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-1000"
+                    />
+                    
+                    {/* Overlay muy sutil para profundidad */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/30 via-transparent to-transparent"></div>
+                    
+                    {/* Marco interior más visible */}
+                    <div className="absolute inset-6 border border-white/10 rounded-[30px] pointer-events-none"></div>
                   </div>
+
+                  {/* Badge flotante con colores del logo */}
+                  <div className="absolute -bottom-4 -right-4 bg-charcoal-900/95 backdrop-blur-xl rounded-xl px-4 py-3 border border-primary/30 hover:border-primary/50 transition-all duration-500 shadow-2xl">
+                    <div className="flex items-center gap-2.5">
+                      <div className="text-center border-r border-primary/20 pr-2.5">
+                        <div className="text-lg font-bold text-primary font-cinzel">100%</div>
+                        <div className="text-[10px] text-white/60 font-cormorant uppercase tracking-wider">Artesanal</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-lg font-bold text-primary font-cinzel">Premium</div>
+                        <div className="text-[10px] text-white/60 font-cormorant uppercase tracking-wider">Calidad</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Decoraciones más visibles */}
+                  <div className="absolute -top-4 -left-4 w-20 h-20 border-t-2 border-l-2 border-white/20 rounded-tl-[25px] group-hover:border-white/30 transition-all duration-700"></div>
+                  <div className="absolute -bottom-4 -right-4 w-20 h-20 border-b-2 border-r-2 border-white/20 rounded-br-[25px] group-hover:border-white/30 transition-all duration-700"></div>
                 </div>
               </div>
-              
-              <nav className="hidden md:flex items-center gap-10">
-                <a href="#productos" className="text-white/80 hover:text-white transition-colors font-semibold flex items-center gap-2">
-                  <span className="text-sm">Productos</span>
-                </a>
-                <a href="#nosotros" className="text-white/80 hover:text-white transition-colors font-semibold flex items-center gap-2">
-                  <span className="text-sm">Nosotros</span>
-                </a>
-                <a href="#servicios" className="text-white/80 hover:text-white transition-colors font-semibold flex items-center gap-2">
-                  <span className="text-sm">Servicios</span>
-                </a>
-                <a href="#contacto" className="text-white/80 hover:text-white transition-colors font-semibold flex items-center gap-2">
-                  <span className="text-sm">Contacto</span>
-                </a>
-              </nav>
-
-              <div className="flex items-center gap-3">
-                {[3, 4, 7].map((num) => (
-                  <button
-                    key={num}
-                    onClick={() => setHeroVariant(num)}
-                    className={`w-10 h-10 flex items-center justify-center font-black text-sm transition-all border-2 ${
-                      heroVariant === num
-                        ? 'bg-white text-primary border-white scale-110'
-                        : 'bg-transparent text-white border-white/30 hover:border-white'
-                    }`}
-                  >
-                    {num}
-                  </button>
-                ))}
-              </div>
             </div>
           </div>
-        </header>
-      )}
+        </div>
 
-      {/* Header Default (Variantes 3) */}
-      {heroVariant !== 4 && heroVariant !== 7 && (
-        <header className="bg-primary fixed top-0 left-0 right-0 z-40 border-b border-primary h-20 shadow-md">
-          <div className="mx-auto px-4 w-full h-full">
-            <div className="flex items-center justify-between h-full gap-4">
-              <div className="flex items-center space-x-3 flex-shrink min-w-0">
-                <img src={logoKoken} alt="Koken" className="h-10 w-10 md:h-12 md:w-12 flex-shrink-0" />
-                <h1 className="text-2xl md:text-3xl font-extrabold text-neutralLight font-brand">Koken</h1>
-              </div>
-              
-              <nav className="hidden md:flex items-center gap-8">
-                <a href="#productos" className="text-neutralLight hover:text-pink-50 transition-colors font-semibold">Productos</a>
-                <a href="#nosotros" className="text-neutralLight hover:text-pink-50 transition-colors font-semibold">Nosotros</a>
-                <a href="#servicios" className="text-neutralLight hover:text-pink-50 transition-colors font-semibold">Servicios</a>
-                <a href="#contacto" className="text-neutralLight hover:text-pink-50 transition-colors font-semibold">Contacto</a>
-              </nav>
-
-              <div className="flex items-center gap-2 flex-wrap max-w-[400px] md:max-w-none">
-                {[3, 4, 7].map((num) => (
-                  <button
-                    key={num}
-                    onClick={() => setHeroVariant(num)}
-                    className={`w-9 h-9 flex items-center justify-center font-bold text-sm transition-all ${
-                      heroVariant === num
-                        ? 'bg-neutralLight text-primary scale-110'
-                        : 'bg-primary/30 text-neutralLight hover:bg-primary/50'
-                    }`}
-                    title={`Hero versión ${num}`}
-                  >
-                    {num}
-                  </button>
-                ))}
-              </div>
-            </div>
+        {/* Flecha scroll - Animación sutil */}
+        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 opacity-50 hover:opacity-80 transition-opacity duration-500">
+          <div className="flex flex-col items-center gap-2">
+            <svg 
+              className="w-6 h-6 text-white animate-bounce" 
+              style={{ animationDuration: '2s' }}
+              fill="none" 
+              stroke="currentColor" 
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
           </div>
-        </header>
-      )}
+        </div>
+      </section>
 
-      {/* Hero Variants */}
-      {heroVariant === 3 && <HeroVariant3 />}
-      {heroVariant === 4 && <HeroVariant4 />}
-      {heroVariant === 7 && <HeroVariant7 />}
-
+      {/* Resto de las secciones continúan igual por ahora... */}
       {/* Sección Productos */}
-      <section id="productos" className="relative py-20 px-4 bg-gradient-to-b from-neutralLight to-white">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <span className="inline-block text-sm font-bold text-secondary tracking-widest mb-4 uppercase">
-              Galería
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black text-primary mb-6 font-cooper">
-              Nuestros Productos
+      <section id="productos" className="relative py-24 px-4 bg-gradient-to-b from-cream-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          {/* Encabezado de sección premium */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-400"></div>
+              <span className="text-sm font-playfair text-gold-600 tracking-[0.3em] uppercase">
+                Galería
+              </span>
+              <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-400"></div>
+            </div>
+            
+            <h2 className="text-5xl md:text-6xl font-black text-charcoal-900 mb-6 font-cinzel">
+              Nuestras <span className="text-primary">Creaciones</span>
             </h2>
-            <div className="h-1 w-24 bg-gradient-to-r from-secondary to-primary mx-auto rounded-full"></div>
-            <p className="text-lg text-neutralDark mt-6 max-w-2xl mx-auto">
-              Cada creación es una obra de arte única, hecha con ingredientes premium y mucho amor
+            
+            <div className="flex justify-center mb-8">
+              <div className="h-1 w-32 bg-gradient-to-r from-primary via-gold-400 to-secondary rounded-full"></div>
+            </div>
+            
+            <p className="text-xl text-charcoal-600 max-w-3xl mx-auto font-cormorant leading-relaxed">
+              Cada creación es una obra de arte única, elaborada con ingredientes premium 
+              y el toque especial que nos distingue
             </p>
           </div>
 
+          {/* Grid de productos con efectos premium */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {productImages.slice(0, 12).map((img, idx) => (
               <div
                 key={idx}
-                className="group relative overflow-hidden rounded-xl aspect-square shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-105"
+                className="group relative overflow-hidden rounded-2xl aspect-square shadow-soft hover:shadow-elegant transition-all duration-500 hover:scale-[1.02] cursor-pointer"
+                style={{
+                  animationDelay: `${idx * 0.1}s`
+                }}
               >
+                {/* Imagen */}
                 <img
                   src={img}
                   alt={`Producto ${idx + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="p-4 text-white">
-                    <p className="font-bold text-sm">Ver Detalles</p>
+                
+                {/* Overlay premium con glassmorphism */}
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/90 via-charcoal-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <p className="text-white font-playfair font-bold text-lg mb-1">Delicia Premium</p>
+                        <p className="text-gold-300 font-cormorant text-sm">Ver detalles →</p>
+                      </div>
+                      <div className="w-12 h-12 rounded-full bg-gold-400/20 backdrop-blur-sm flex items-center justify-center border border-gold-400/30">
+                        <span className="text-gold-300 text-xl">+</span>
+                      </div>
+                    </div>
                   </div>
+                </div>
+
+                {/* Borde dorado en hover */}
+                <div className="absolute inset-0 border-2 border-gold-400/0 group-hover:border-gold-400/50 rounded-2xl transition-all duration-500"></div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA Ver más */}
+          <div className="text-center mt-16">
+            <button className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-primary to-secondary text-white px-10 py-4 rounded-full font-playfair font-bold text-lg transition-all hover:scale-105 shadow-elegant hover:shadow-gold overflow-hidden">
+              <span className="relative z-10">Ver Toda la Colección</span>
+              <span className="relative z-10 text-2xl transition-transform group-hover:translate-x-1">→</span>
+              <div className="absolute inset-0 bg-gradient-to-r from-gold-500 to-gold-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección Testimonios Premium */}
+      <section className="relative py-24 px-4 bg-gradient-to-b from-white via-cream-50 to-white overflow-hidden">
+        {/* Decoración de fondo */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl">
+          <div className="absolute inset-0 bg-gradient-to-r from-gold-100/30 to-cream-200/30 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Encabezado */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-400"></div>
+              <span className="text-sm font-playfair text-gold-600 tracking-[0.3em] uppercase">
+                Testimonios
+              </span>
+              <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-400"></div>
+            </div>
+            
+            <h2 className="text-5xl md:text-6xl font-black text-charcoal-900 mb-6 font-cinzel">
+              Lo Que Dicen <span className="text-primary">Nuestros Clientes</span>
+            </h2>
+            
+            <div className="flex justify-center mb-8">
+              <div className="h-1 w-32 bg-gradient-to-r from-primary via-gold-400 to-secondary rounded-full"></div>
+            </div>
+          </div>
+
+          {/* Grid de testimonios */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                name: 'María González',
+                role: 'Novia 2024',
+                text: 'La torta de nuestra boda fue absolutamente espectacular. Cada detalle estuvo perfecto y el sabor fue inolvidable. ¡Todos nuestros invitados quedaron maravillados!',
+                rating: 5,
+                image: productImages[20]
+              },
+              {
+                name: 'Carlos Méndez',
+                role: 'Empresario',
+                text: 'Contratamos a Koken para un evento corporativo y superaron todas nuestras expectativas. Profesionalismo, calidad y un servicio excepcional.',
+                rating: 5,
+                image: productImages[21]
+              },
+              {
+                name: 'Laura Fernández',
+                role: 'Cliente Regular',
+                text: 'Desde que probé sus croissants, me convertí en cliente habitual. La calidad de los ingredientes y el amor que le ponen a cada producto se nota en cada bocado.',
+                rating: 5,
+                image: productImages[22]
+              }
+            ].map((testimonial, idx) => (
+              <div
+                key={idx}
+                className="group relative bg-white rounded-3xl p-8 border border-cream-300/50 hover:border-gold-400 transition-all duration-500 hover:scale-[1.02] shadow-soft hover:shadow-gold cursor-pointer"
+                style={{
+                  animationDelay: `${idx * 0.2}s`
+                }}
+              >
+                {/* Quote icon de fondo */}
+                <div className="absolute top-6 right-6 text-6xl text-gold-200/30 font-serif">"</div>
+
+                {/* Contenido */}
+                <div className="relative z-10">
+                  {/* Rating */}
+                  <div className="flex gap-1 mb-4">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <span key={i} className="text-gold-400 text-xl">★</span>
+                    ))}
+                  </div>
+
+                  {/* Texto del testimonio */}
+                  <p className="text-charcoal-600 font-cormorant text-lg leading-relaxed mb-6 italic">
+                    "{testimonial.text}"
+                  </p>
+
+                  {/* Autor */}
+                  <div className="flex items-center gap-4 pt-6 border-t border-gold-200/30">
+                    <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-gold-400/30 group-hover:ring-gold-400 transition-all duration-300">
+                      <img 
+                        src={testimonial.image} 
+                        alt={testimonial.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="font-playfair font-bold text-charcoal-900">{testimonial.name}</h4>
+                      <p className="text-sm text-gold-600 font-cormorant">{testimonial.role}</p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Decoración dorada en hover */}
+                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-gold-400/0 group-hover:border-gold-400 rounded-tl-3xl transition-all duration-500"></div>
+                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-gold-400/0 group-hover:border-gold-400 rounded-br-3xl transition-all duration-500"></div>
+              </div>
+            ))}
+          </div>
+
+          {/* Stats adicionales */}
+          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
+            {[
+              { number: '98%', label: 'Clientes Satisfechos' },
+              { number: '2500+', label: 'Pedidos Completados' },
+              { number: '250+', label: 'Eventos Realizados' },
+              { number: '4.9★', label: 'Calificación Promedio' }
+            ].map((stat, idx) => (
+              <div key={idx} className="text-center">
+                <div className="text-4xl md:text-5xl font-black bg-gradient-to-r from-primary to-gold-500 bg-clip-text text-transparent mb-2 font-cinzel">
+                  {stat.number}
+                </div>
+                <div className="text-sm text-charcoal-600 font-cormorant uppercase tracking-wider">
+                  {stat.label}
                 </div>
               </div>
             ))}
@@ -268,54 +550,82 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Sección Nosotros */}
-      <section id="nosotros" className="relative py-20 px-4 bg-white">
+      {/* Sección Nosotros - Premium */}
+      <section id="nosotros" className="relative py-24 px-4 bg-white overflow-hidden">
+        {/* Decoración de fondo */}
+        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cream-100 to-transparent opacity-50"></div>
+        
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6">
-              <span className="inline-block text-sm font-bold text-secondary tracking-widest uppercase">
-                Nuestra Historia
-              </span>
-              <h2 className="text-4xl md:text-5xl font-black text-primary font-cooper">
-                Pastelería Artesanal desde 2010
-              </h2>
-              <div className="h-1 w-24 bg-gradient-to-r from-secondary to-primary rounded-full"></div>
-              <p className="text-lg text-neutralDark leading-relaxed">
-                En Koken, cada pastel, cada croissant y cada cupcake cuenta una historia. Desde nuestra 
-                fundación en Mar del Plata, nos hemos dedicado a crear experiencias dulces inolvidables 
-                combinando técnicas tradicionales con ingredientes de la más alta calidad.
-              </p>
-              <p className="text-lg text-neutralDark leading-relaxed">
-                Nuestro equipo de pasteleros apasionados trabaja cada día para ofrecerte productos 
-                frescos, artesanales y con el toque especial que nos caracteriza. Porque creemos que 
-                la repostería no es solo un trabajo, es nuestro arte.
-              </p>
-              <div className="grid grid-cols-3 gap-6 pt-6">
-                <div className="text-center">
-                  <div className="text-4xl font-black text-primary mb-2">15+</div>
-                  <div className="text-sm text-neutralDark font-semibold">Años de Experiencia</div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Contenido */}
+            <div className="space-y-8">
+              <div>
+                <div className="inline-flex items-center gap-3 mb-6">
+                  <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-400"></div>
+                  <span className="text-sm font-playfair text-gold-600 tracking-[0.3em] uppercase">
+                    Nuestra Historia
+                  </span>
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-black text-primary mb-2">5000+</div>
-                  <div className="text-sm text-neutralDark font-semibold">Clientes Felices</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl font-black text-primary mb-2">⭐ 5.0</div>
-                  <div className="text-sm text-neutralDark font-semibold">Valoración</div>
-                </div>
+                
+                <h2 className="text-4xl md:text-5xl font-black text-charcoal-900 mb-6 font-cinzel leading-tight">
+                  Pastelería Artesanal <br />
+                  <span className="text-primary">desde 2010</span>
+                </h2>
+                
+                <div className="h-1 w-32 bg-gradient-to-r from-primary via-gold-400 to-secondary rounded-full mb-8"></div>
+              </div>
+
+              <div className="space-y-6 font-cormorant text-lg text-charcoal-600 leading-relaxed">
+                <p className="text-xl">
+                  En <span className="font-bold text-charcoal-900">Koken</span>, cada pastel, cada croissant y cada cupcake cuenta una historia. 
+                  Desde nuestra fundación en Mar del Plata, nos hemos dedicado a crear experiencias 
+                  dulces inolvidables combinando técnicas tradicionales con ingredientes de la más alta calidad.
+                </p>
+                
+                <p>
+                  Nuestro equipo de pasteleros apasionados trabaja cada día para ofrecerte productos 
+                  frescos, artesanales y con el toque especial que nos caracteriza. Porque creemos que 
+                  la repostería no es solo un trabajo, <span className="font-bold text-primary italic">es nuestro arte</span>.
+                </p>
+              </div>
+
+              {/* Stats premium */}
+              <div className="grid grid-cols-3 gap-6 pt-8">
+                {[
+                  { number: '15+', label: 'Años de Experiencia', icon: '🏆' },
+                  { number: '5000+', label: 'Clientes Felices', icon: '💝' },
+                  { number: '⭐ 5.0', label: 'Valoración', icon: '' }
+                ].map((stat, idx) => (
+                  <div key={idx} className="text-center group cursor-pointer">
+                    <div className="bg-gradient-to-br from-cream-100 to-cream-200 rounded-2xl p-6 border border-gold-200/50 transition-all duration-300 group-hover:shadow-gold group-hover:scale-105">
+                      {stat.icon && <div className="text-3xl mb-3">{stat.icon}</div>}
+                      <div className="text-3xl md:text-4xl font-black text-primary mb-2 font-cinzel">{stat.number}</div>
+                      <div className="text-sm text-charcoal-600 font-cormorant font-semibold">{stat.label}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
+
+            {/* Galería de imágenes */}
             <div className="grid grid-cols-2 gap-4">
               {productImages.slice(12, 16).map((img, idx) => (
                 <div
                   key={idx}
-                  className="relative overflow-hidden rounded-xl aspect-square shadow-xl"
+                  className="relative overflow-hidden rounded-2xl aspect-square shadow-elegant group cursor-pointer"
+                  style={{
+                    animationDelay: `${idx * 0.1}s`
+                  }}
                 >
                   <img
                     src={img}
                     alt={`Nosotros ${idx + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  
+                  {/* Borde dorado */}
+                  <div className="absolute inset-0 border-2 border-gold-400/0 group-hover:border-gold-400/70 rounded-2xl transition-all duration-500"></div>
                 </div>
               ))}
             </div>
@@ -323,331 +633,277 @@ function LandingPage() {
         </div>
       </section>
 
-      {/* Sección Servicios */}
-      <section id="servicios" className="relative py-20 px-4 bg-gradient-to-b from-white to-neutralLight">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
-            <span className="inline-block text-sm font-bold text-secondary tracking-widest mb-4 uppercase">
-              Servicios
-            </span>
-            <h2 className="text-4xl md:text-5xl font-black text-primary mb-6 font-cooper">
-              Para Cada Ocasión Especial
+      {/* Sección Servicios - Ultra Premium */}
+      <section id="servicios" className="relative py-24 px-4 bg-gradient-to-b from-white to-cream-100">
+        <div className="max-w-7xl mx-auto">
+          {/* Encabezado */}
+          <div className="text-center mb-20">
+            <div className="inline-flex items-center gap-3 mb-6">
+              <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-400"></div>
+              <span className="text-sm font-playfair text-gold-600 tracking-[0.3em] uppercase">
+                Servicios
+              </span>
+              <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-400"></div>
+            </div>
+            
+            <h2 className="text-5xl md:text-6xl font-black text-charcoal-900 mb-6 font-cinzel">
+              Para Cada <span className="text-primary">Ocasión Especial</span>
             </h2>
-            <div className="h-1 w-24 bg-gradient-to-r from-secondary to-primary mx-auto rounded-full"></div>
+            
+            <div className="flex justify-center mb-8">
+              <div className="h-1 w-32 bg-gradient-to-r from-primary via-gold-400 to-secondary rounded-full"></div>
+            </div>
           </div>
 
+          {/* Grid de servicios */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: <FaBirthdayCake />, title: 'Tortas de Cumpleaños', desc: 'Diseños personalizados para celebrar tu día especial' },
-              { icon: <GiPartyFlags />, title: 'Eventos Corporativos', desc: 'Coordinamos catering para tus reuniones y eventos' },
-              { icon: <GiCupcake />, title: 'Bodas', desc: 'Tortas nupciales elegantes y sofisticadas' },
-              { icon: <GiCroissant />, title: 'Desayunos', desc: 'Desayunos y meriendas premium para compartir' }
+              { 
+                icon: <FaBirthdayCake />, 
+                title: 'Cumpleaños', 
+                desc: 'Diseños personalizados para celebrar tu día más especial',
+                color: 'from-pink-400 to-pink-600'
+              },
+              { 
+                icon: <GiPartyFlags />, 
+                title: 'Eventos Corporativos', 
+                desc: 'Catering premium para impresionar en reuniones',
+                color: 'from-blue-400 to-blue-600'
+              },
+              { 
+                icon: <GiCupcake />, 
+                title: 'Bodas', 
+                desc: 'Tortas nupciales elegantes que roban suspiros',
+                color: 'from-purple-400 to-purple-600'
+              },
+              { 
+                icon: <GiCroissant />, 
+                title: 'Desayunos', 
+                desc: 'Experiencias matutinas premium para compartir',
+                color: 'from-amber-400 to-amber-600'
+              }
             ].map((service, idx) => (
               <div
                 key={idx}
-                className="group relative bg-white rounded-2xl p-8 border border-neutralLight/60 hover:border-primary transition-all duration-300 hover:scale-[1.02] shadow-md hover:shadow-xl text-center"
+                className="group relative bg-white rounded-3xl p-8 border border-cream-300/50 hover:border-gold-400 transition-all duration-500 hover:scale-[1.03] shadow-soft hover:shadow-gold text-center cursor-pointer overflow-hidden"
+                style={{
+                  animationDelay: `${idx * 0.1}s`
+                }}
               >
-                <div className="relative mb-6 flex justify-center">
-                  <div className="text-5xl text-primary group-hover:scale-110 transition-transform duration-300">
-                    {service.icon}
+                {/* Efecto shimmer de fondo */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold-50 to-cream-100"></div>
+                </div>
+
+                {/* Contenido */}
+                <div className="relative z-10">
+                  {/* Ícono con gradiente */}
+                  <div className="relative mb-6 flex justify-center">
+                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center text-white text-4xl shadow-lg group-hover:scale-110 group-hover:rotate-6 transition-all duration-500`}>
+                      {service.icon}
+                    </div>
+                  </div>
+
+                  {/* Título */}
+                  <h3 className="text-2xl font-black text-charcoal-900 mb-4 font-playfair group-hover:text-primary transition-colors duration-300">
+                    {service.title}
+                  </h3>
+
+                  {/* Línea decorativa */}
+                  <div className="h-px w-16 bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mb-4"></div>
+
+                  {/* Descripción */}
+                  <p className="text-charcoal-600 leading-relaxed font-cormorant text-lg">
+                    {service.desc}
+                  </p>
+
+                  {/* Botón ver más */}
+                  <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                    <span className="text-gold-600 font-playfair font-semibold text-sm flex items-center justify-center gap-2">
+                      Conocer más <span className="text-lg">→</span>
+                    </span>
                   </div>
                 </div>
-                <h3 className="text-xl font-black text-primary mb-3 font-brand">
-                  {service.title}
-                </h3>
-                <p className="text-neutralDark leading-relaxed">
-                  {service.desc}
-                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Sección Contacto */}
-      <section id="contacto" className="relative py-20 px-4 bg-primary">
+      {/* Sección Contacto Premium */}
+      <section id="contacto" className="relative py-24 px-4 bg-gradient-to-br from-charcoal-900 via-charcoal-800 to-charcoal-900 text-white overflow-hidden">
+        {/* Efectos de fondo */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 -left-1/4 w-96 h-96 bg-gold-400/10 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-1/4 -right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        </div>
+
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 text-white">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            {/* Información de contacto */}
+            <div className="space-y-10">
               <div>
-                <h2 className="text-4xl md:text-5xl font-black mb-6 font-cooper">
-                  Ven a Visitar our Pastelería
+                <h2 className="text-4xl md:text-5xl font-black mb-6 font-cinzel leading-tight">
+                  Visítanos en Nuestra
+                  <br />
+                  <span className="bg-gradient-to-r from-gold-300 to-gold-500 bg-clip-text text-transparent">
+                    Pastelería
+                  </span>
                 </h2>
-                <div className="h-1 w-24 bg-white/30 rounded-full mb-8"></div>
+                <div className="h-1 w-32 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full mb-8"></div>
+                <p className="text-xl text-white/70 font-cormorant leading-relaxed">
+                  Estamos aquí para endulzar tus momentos más especiales
+                </p>
               </div>
               
               <div className="space-y-6">
-                <div className="flex items-start gap-4">
-                  <div className="mt-1">
-                    <FiMapPin className="text-3xl text-pink-50" />
+                {[
+                  { icon: <FiMapPin />, title: 'Ubicación', content: 'Mar del Plata, Buenos Aires, Argentina' },
+                  { icon: <FiPhone />, title: 'Teléfono', content: '+54 223 XXX XXXX' },
+                  { icon: <FiMail />, title: 'Email', content: 'hola@koken.com.ar' }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-6 group cursor-pointer">
+                    <div className="mt-1">
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-2xl shadow-gold group-hover:scale-110 transition-transform duration-300">
+                        {item.icon}
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="font-bold text-lg mb-1 font-playfair text-gold-300">{item.title}</h3>
+                      <p className="text-white/80 font-cormorant text-lg">{item.content}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">Ubicación</h3>
-                    <p className="text-pink-50">Mar del Plata, Buenos Aires, Argentina</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="mt-1">
-                    <FiPhone className="text-3xl text-pink-50" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">Teléfono</h3>
-                    <p className="text-pink-50">+54 223 XXX XXXX</p>
-                  </div>
-                </div>
-                
-                <div className="flex items-start gap-4">
-                  <div className="mt-1">
-                    <FiMail className="text-3xl text-pink-50" />
-                  </div>
-                  <div>
-                    <h3 className="font-bold text-lg mb-1">Email</h3>
-                    <p className="text-pink-50">hola@koken.com.ar</p>
-                  </div>
-                </div>
-                
-                <div className="flex gap-6 pt-6">
-                  <a href="#" className="text-pink-50 hover:text-white transition-colors text-3xl">
-                    <FiInstagram />
-                  </a>
-                  <a href="#" className="text-pink-50 hover:text-white transition-colors text-3xl">
-                    <FiFacebook />
-                  </a>
+                ))}
+              </div>
+              
+              {/* Redes sociales */}
+              <div className="pt-6">
+                <p className="text-sm text-white/60 mb-4 font-cormorant tracking-wider uppercase">Síguenos</p>
+                <div className="flex gap-4">
+                  {[
+                    { icon: <FiInstagram />, link: '#' },
+                    { icon: <FiFacebook />, link: '#' }
+                  ].map((social, idx) => (
+                    <a
+                      key={idx}
+                      href={social.link}
+                      className="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-2xl hover:bg-gradient-to-br hover:from-gold-400 hover:to-gold-600 hover:border-gold-400 transition-all duration-300 hover:scale-110 hover:shadow-gold"
+                    >
+                      {social.icon}
+                    </a>
+                  ))}
                 </div>
               </div>
             </div>
             
-            <div className="relative">
-              <div className="grid grid-cols-2 gap-4">
-                {productImages.slice(16, 20).map((img, idx) => (
-                  <div
-                    key={idx}
-                    className="relative overflow-hidden rounded-xl aspect-square shadow-2xl"
-                  >
-                    <img
-                      src={img}
-                      alt={`Contacto ${idx + 1}`}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
+            {/* Galería de imágenes de contacto */}
+            <div className="grid grid-cols-2 gap-4">
+              {productImages.slice(16, 20).map((img, idx) => (
+                <div
+                  key={idx}
+                  className="relative overflow-hidden rounded-2xl aspect-square shadow-2xl group cursor-pointer"
+                >
+                  <img
+                    src={img}
+                    alt={`Contacto ${idx + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/60 to-transparent group-hover:opacity-0 transition-opacity duration-500"></div>
+                  <div className="absolute inset-0 border-2 border-gold-400/0 group-hover:border-gold-400/70 rounded-2xl transition-all duration-500"></div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-neutralDark py-12 px-4">
+      {/* Footer Premium */}
+      <footer className="bg-charcoal-950 py-16 px-4 border-t border-gold-400/10">
         <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center space-x-3">
-              <img src={logoKoken} alt="Koken" className="h-12 w-12" />
-              <h3 className="text-2xl font-black text-neutralLight font-brand">Koken</h3>
+          {/* Contenido principal del footer */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            {/* Logo y descripción */}
+            <div className="space-y-6">
+              <div className="flex items-center space-x-4">
+                <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-gold">
+                  <GiCroissant className="text-2xl text-white" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black text-white font-cinzel">KOKEN</h3>
+                  <p className="text-xs text-gold-400 font-playfair tracking-[0.2em]">ARTESANAL</p>
+                </div>
+              </div>
+              <p className="text-white/60 font-cormorant leading-relaxed">
+                Endulzando vidas desde 2010 con pasión, dedicación y los mejores ingredientes.
+              </p>
             </div>
-            <div className="flex justify-center space-x-8 text-3xl text-neutralLight">
-              <a href="#" className="hover:text-secondary cursor-pointer transition-colors"><FiInstagram /></a>
-              <a href="#" className="hover:text-secondary cursor-pointer transition-colors"><FiFacebook /></a>
+
+            {/* Links rápidos */}
+            <div>
+              <h4 className="text-white font-playfair font-bold text-lg mb-6">Enlaces Rápidos</h4>
+              <ul className="space-y-3">
+                {['Productos', 'Nosotros', 'Servicios', 'Contacto'].map((link) => (
+                  <li key={link}>
+                    <a 
+                      href={`#${link.toLowerCase()}`}
+                      className="text-white/60 hover:text-gold-400 transition-colors font-cormorant text-lg flex items-center gap-2 group"
+                    >
+                      <span className="text-gold-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Horarios */}
+            <div>
+              <h4 className="text-white font-playfair font-bold text-lg mb-6">Horarios</h4>
+              <ul className="space-y-3 text-white/60 font-cormorant text-lg">
+                <li className="flex justify-between">
+                  <span>Lun - Vie</span>
+                  <span className="text-gold-400">9:00 - 20:00</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Sábados</span>
+                  <span className="text-gold-400">10:00 - 22:00</span>
+                </li>
+                <li className="flex justify-between">
+                  <span>Domingos</span>
+                  <span className="text-gold-400">10:00 - 18:00</span>
+                </li>
+              </ul>
+            </div>
           </div>
-          </div>
-          <div className="mt-8 pt-8 border-t border-white/10 text-center">
-            <p className="text-neutralLight text-sm">© 2024 Koken. Todos los derechos reservados.</p>
+
+          {/* Línea divisoria */}
+          <div className="h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent mb-8"></div>
+
+          {/* Copyright y redes */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <p className="text-white/40 text-sm font-cormorant">
+              © 2024 Koken. Todos los derechos reservados. Hecho con ❤️ en Mar del Plata.
+            </p>
+            
+            <div className="flex items-center gap-4">
+              <span className="text-white/40 text-sm font-cormorant">Síguenos:</span>
+              <div className="flex gap-3">
+                {[<FiInstagram />, <FiFacebook />].map((icon, idx) => (
+                  <a
+                    key={idx}
+                    href="#"
+                    className="w-10 h-10 rounded-lg bg-white/5 hover:bg-gradient-to-br hover:from-gold-400 hover:to-gold-600 border border-white/10 hover:border-gold-400 flex items-center justify-center text-white/60 hover:text-white transition-all duration-300 hover:scale-110 text-lg"
+                  >
+                    {icon}
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </footer>
     </div>
   )
 }
-
-// Hero Variant 3: Split layout con imagen destacada
-function HeroVariant3() {
-  return (
-    <section className="relative min-h-screen pt-20 overflow-hidden">
-      <AnimatedBackground />
-      <div className="relative z-10 w-full h-[calc(100vh-80px)] px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto h-full flex items-center">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center w-full">
-            <div className="space-y-8 order-2 lg:order-1">
-              <div className="space-y-4">
-                <div className="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full border border-white/30">
-                  <span className="text-white text-sm font-bold tracking-widest">DESDE 2010</span>
-                </div>
-                <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight font-cooper">
-                  Pastelería<br/>Artesanal
-                </h1>
-                <div className="h-1 w-32 bg-white/60"></div>
-              </div>
-              <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-xl">
-                Transformamos ingredientes premium en experiencias dulces inolvidables
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                <a href="#productos" className="group bg-white text-primary hover:bg-neutralLight px-8 py-4 rounded-2xl font-black text-lg transition-all hover:scale-105 shadow-2xl flex items-center justify-center gap-3">
-                  <GiCupcake className="text-2xl" />
-                  <span>Explorar</span>
-                </a>
-                <a href="#servicios" className="group bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-8 py-4 rounded-2xl font-black text-lg transition-all hover:scale-105 flex items-center justify-center gap-3">
-                  <FaBirthdayCake className="text-2xl" />
-                  <span>Servicios</span>
-                </a>
-        </div>
-        </div>
-            <div className="relative order-1 lg:order-2">
-              <div className="relative aspect-square rounded-3xl overflow-hidden shadow-2xl">
-                <img src={productImages[0]} alt="Producto destacado" className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              </div>
-              <div className="absolute -bottom-6 -left-6 bg-white/20 backdrop-blur-lg rounded-2xl p-6 shadow-2xl border border-white/30">
-                <div className="text-center">
-                  <div className="text-4xl font-black text-white mb-2">15+</div>
-                  <div className="text-sm text-pink-50 font-bold uppercase tracking-widest">Años</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Hero Variant 4: Diagonal split con mosaico de imágenes
-function HeroVariant4() {
-  return (
-    <section className="relative min-h-screen pt-24 overflow-hidden bg-gradient-to-br from-primary via-primary to-secondary">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(255,255,255,0.05) 50px, rgba(255,255,255,0.05) 100px)`
-        }}></div>
-      </div>
-      
-      <div className="relative z-10 w-full h-[calc(100vh-96px)] px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto h-full flex items-center">
-          <div className="w-full">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
-              <div className="space-y-6">
-                <div className="inline-flex items-center gap-3 bg-white/20 backdrop-blur-lg px-6 py-3 rounded-full">
-                  <span className="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-                  <span className="text-white text-sm font-bold tracking-widest">ARTESANAL</span>
-                </div>
-                <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-tight font-cooper">
-                  DELICIAS<br/>CASERAS
-                </h1>
-                <p className="text-xl md:text-2xl text-white/90 leading-relaxed max-w-lg">
-                  Sabores auténticos que despiertan emociones y crean recuerdos inolvidables
-                </p>
-                <div className="flex gap-4 pt-6">
-                  <a href="#productos" className="bg-white text-primary hover:bg-neutralLight px-10 py-4 rounded-full font-black text-lg transition-all hover:scale-105 shadow-2xl">
-                    Explorar
-                  </a>
-                  <a href="#contacto" className="bg-transparent border-2 border-white text-white hover:bg-white hover:text-primary px-10 py-4 rounded-full font-black text-lg transition-all">
-                    Contacto
-                  </a>
-                </div>
-              </div>
-              
-              <div className="grid grid-cols-2 gap-3 lg:gap-4">
-                {productImages.slice(0, 4).map((img, idx) => (
-                  <div key={idx} className="relative group">
-                    <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl border-2 border-white/30">
-                      <img src={img} alt={`Producto ${idx + 1}`} className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-700" />
-                    </div>
-                    {idx === 0 && (
-                      <div className="absolute top-4 right-4 bg-white/90 text-primary px-3 py-1 rounded-full text-xs font-black">
-                        NUEVO
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Hero Variant 7: Layout asimétrico con carousel lateral
-function HeroVariant7() {
-  return (
-    <section className="relative min-h-screen pt-24 overflow-hidden bg-gradient-to-br from-primary via-primary to-secondary">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute inset-0" style={{
-          backgroundImage: `repeating-linear-gradient(45deg, transparent, transparent 50px, rgba(255,255,255,0.05) 50px, rgba(255,255,255,0.05) 100px)`
-        }}></div>
-      </div>
-      
-      <div className="relative z-10 w-full h-[calc(100vh-96px)] px-4 sm:px-6 md:px-8 lg:px-12">
-        <div className="max-w-7xl mx-auto h-full flex items-center">
-          <div className="w-full">
-            <div className="grid grid-cols-12 gap-6 items-center">
-              <div className="col-span-12 lg:col-span-6 space-y-8">
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4">
-                    <GiCroissant className="text-5xl text-white/80" />
-                    <div className="flex-1 h-px bg-white/20"></div>
-                  </div>
-                  <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-white leading-none font-cooper">
-                    ARTESANÍA<br/>DULCE
-                  </h1>
-                  <p className="text-2xl md:text-3xl text-white/80 font-light pl-16">
-                    Koken Mar del Plata
-                  </p>
-                </div>
-                
-                <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-lg pl-16">
-                  Cada creación es el resultado de años de experiencia y una pasión innegable por la repostería auténtica
-                </p>
-                
-                <div className="pl-16 pt-4">
-                  <a href="#productos" className="inline-flex items-center gap-3 bg-white text-primary hover:bg-neutralLight px-8 py-4 rounded-full font-black transition-all hover:scale-105 shadow-2xl">
-                    <span>Ver Obras</span>
-                    <span className="text-2xl">→</span>
-                  </a>
-                </div>
-              </div>
-              
-              <div className="col-span-12 lg:col-span-6">
-                <div className="relative">
-                  <div className="relative aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl border-4 border-white/30">
-                    <img src={productImages[5]} alt="Imagen principal" className="w-full h-full object-cover" />
-                  </div>
-                  
-                  <div className="absolute -bottom-6 -right-6 bg-white/20 backdrop-blur-xl rounded-2xl p-6 border border-white/30 shadow-2xl">
-                    <div className="flex items-center gap-4">
-                      <div className="text-center border-r border-white/20 pr-4">
-                        <div className="text-3xl font-black text-white">15+</div>
-                        <div className="text-xs text-white/70 font-bold uppercase">Años</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-3xl font-black text-white">5000+</div>
-                        <div className="text-xs text-white/70 font-bold uppercase">Clientes</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// Componente base de fondo animado
-const AnimatedBackground = () => (
-  <>
-    <div className="absolute inset-0 bg-primary"></div>
-    <div className="absolute inset-0 opacity-[0.03]" style={{
-      backgroundImage: `repeating-linear-gradient(0deg, #000 0px, #000 1px, transparent 1px, transparent 60px),
-                       repeating-linear-gradient(90deg, #000 0px, #000 1px, transparent 1px, transparent 60px)`
-    }}></div>
-    <div className="absolute inset-0 flex items-center justify-center opacity-[0.68]">
-      <img src={logoKoken} alt="" className="w-[150%] md:w-[130%] lg:w-[110%] max-w-none h-auto filter brightness-150 contrast-150 drop-shadow-[0_0_50px_rgba(255,255,255,0.6)]" />
-    </div>
-  </>
-)
 
 export default App
