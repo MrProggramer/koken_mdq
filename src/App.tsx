@@ -6,6 +6,7 @@ import { FaBirthdayCake } from 'react-icons/fa'
 // Importar logo e imagen maestra
 import logoKoken from './assets/logo_koken_1.png'
 import maestraImg from './assets/maestra.jpg'
+import maestra2Img from './assets/grid_background.jpg'
 
 // Importar imágenes de productos
 import img1 from './assets/0949b276-5fa1-493e-af1d-533773d20b84.jpg'
@@ -17,7 +18,7 @@ import img6 from './assets/maestra.jpg'
 import img7 from './assets/2ee8c29d-9a13-4f6a-a915-6c92064978e4.jpg'
 import img8 from './assets/3cac8862-3147-4a6f-b1ab-c44f50ab95ca.jpg'
 import img9 from './assets/4e622e9a-48f2-40dd-ad61-8683131811e8.jpg'
-import img10 from './assets/4e978bb0-e7d1-40cd-b84a-0b58812d17eb.jpg'
+import img10 from './assets/postres_delantal.jpg'
 import img11 from './assets/60df2871-43c7-493f-a0ce-3c2232ce5e3c.jpg'
 import img12 from './assets/636d7573-90bd-4e27-8e15-b67bdf1e64ec.jpg'
 import img13 from './assets/b9bd8aec-9231-41e8-ad01-4aaf4e032ba8.jpg'
@@ -28,14 +29,14 @@ import img17 from './assets/9cd361fb-5493-4939-bb9c-d682627fd9a1.jpg'
 import img18 from './assets/9e07d805-8f00-43ce-9ddf-b7197dab964c.jpg'
 import img19 from './assets/a5a3f9dc-c877-48a1-89d7-e4dc7150d62d.jpg'
 import img20 from './assets/afe46a6f-2194-4fae-bdeb-9877fa00df74.jpg'
-import img21 from './assets/b40c61c4-3e43-4e15-8822-76132fafa406.jpg'
+import img21 from './assets/grid_background.jpg'
 import img22 from './assets/b9bd8aec-9231-41e8-ad01-4aaf4e032ba8.jpg'
 import img23 from './assets/c177be19-8cc7-4a21-b456-5776a1cf3091.jpg'
 import img24 from './assets/c3a712c3-3d2e-47ff-abfd-ba39edf4d5b4.jpg'
 import img25 from './assets/c6d8c85d-559d-45e7-87ef-76a5060ebe62.jpg'
-import img26 from './assets/dbe80aac-96ea-4a65-8de1-78fc466f9466.jpg'
-import img27 from './assets/de2d4d09-5493-4082-b8f3-0a103ef2e28e.jpg'
-import img28 from './assets/e6ea88ce-c146-4c79-91da-629729424fe7.jpg'
+import img26 from './assets/evento_1.jpg'
+import img27 from './assets/evento_2.jpg'
+import img28 from './assets/cambiarNombre.jpg'
 import img29 from './assets/ee0eca82-2094-4cb5-9db8-34af4123a420.jpg'
 import img30 from './assets/f0a47ac1-124b-49dd-a3c0-8438b6f9a6c8.jpg'
 import img31 from './assets/f579f23b-0378-4c0f-9dcb-a0e2c380cbdb.jpg'
@@ -49,6 +50,7 @@ function App() {
 function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const [showBadge, setShowBadge] = useState(true)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +62,18 @@ function LandingPage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  useEffect(() => {
+    const handleResize = () => {
+      setShowBadge(window.innerHeight >= 697)
+    }
+    
+    // Check initial size
+    handleResize()
+    
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
+
   return (
     <div className="min-h-screen bg-cream-50 overflow-x-hidden relative">
       {/* Header Premium con Glassmorphism */}
@@ -69,10 +83,14 @@ function LandingPage() {
           : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-20 md:h-24">
-            {/* Logo */}
-            <div className="flex items-center group cursor-pointer">
-              <h1 className="font-cooper font-black tracking-tight text-primary text-3xl md:text-4xl lg:text-5xl transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(220,60,70,0.6)] group-hover:text-shadow-lg" style={{ 
+          <div className={`flex items-center h-10 md:h-12 transition-all duration-700 ${
+            isScrolled ? 'justify-between' : 'justify-between'
+          }`}>
+            {/* Logo - Aparece solo al hacer scroll */}
+            <div className={`flex items-center group cursor-pointer transition-all duration-700 ${
+              isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none absolute left-4 sm:left-6 lg:left-8'
+            }`}>
+              <h1 className="font-cooper font-black tracking-tight text-primary text-xl md:text-2xl lg:text-3xl transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(220,60,70,0.6)] group-hover:text-shadow-lg" style={{ 
                 textShadow: 'none',
                 transition: 'all 0.5s ease'
               }}>
@@ -81,12 +99,14 @@ function LandingPage() {
             </div>
             
             {/* Desktop Navigation */}
-            <nav className="hidden lg:flex items-center gap-10">
+            <nav className={`hidden lg:flex items-center transition-all duration-700 ${
+              isScrolled ? 'gap-10' : 'flex-1 justify-center gap-16'
+            }`}>
               {['Productos', 'Nosotros', 'Servicios', 'Contacto'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className={`relative font-cormorant text-3xl font-medium transition-all duration-300 group ${
+                  className={`relative font-cormorant text-lg font-medium transition-all duration-300 group ${
                     isScrolled 
                       ? 'text-charcoal-700 hover:text-gold-600' 
                       : 'text-white/90 hover:text-white'
@@ -101,10 +121,10 @@ function LandingPage() {
             </nav>
 
             {/* CTA Button Desktop */}
-            <div className="hidden lg:block">
+            <div className={`hidden lg:block transition-all duration-700`}>
               <a
                 href="#contacto"
-                className={`relative overflow-hidden px-8 py-4 rounded-full font-cormorant font-semibold text-lg tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-gold ${
+                className={`relative overflow-hidden px-5 py-2 rounded-full font-cormorant font-semibold text-sm tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-gold ${
                   isScrolled
                     ? 'bg-gradient-to-r from-gold-400 to-gold-600 text-white'
                     : 'bg-white text-primary border-2 border-white'
@@ -118,13 +138,13 @@ function LandingPage() {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`lg:hidden p-2 rounded-lg transition-all duration-300 ${
+              className={`lg:hidden p-1 rounded-lg transition-all duration-700 ${
                 isScrolled 
                   ? 'text-charcoal-800 hover:bg-gold-100' 
                   : 'text-white hover:bg-white/10'
-              }`}
+              } ${!isScrolled ? 'absolute right-4 sm:right-6' : ''}`}
             >
-              {isMobileMenuOpen ? <FiX className="text-2xl" /> : <FiMenu className="text-2xl" />}
+              {isMobileMenuOpen ? <FiX className="text-xl" /> : <FiMenu className="text-xl" />}
             </button>
           </div>
         </div>
@@ -155,194 +175,126 @@ function LandingPage() {
         </div>
       </header>
 
-      {/* Hero Section - Sofisticado y Delicado */}
+      {/* Hero Section - Armonioso y Equilibrado */}
       <section className="relative h-screen flex items-center overflow-hidden">
-        {/* Imagen de fondo completa */}
-        <div className="absolute inset-0">
+        {/* Fondo para Desktop - Imagen única */}
+        <div className="hidden lg:block absolute inset-0">
           <img 
             src={maestraImg} 
             alt="Fondo Koken" 
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover scale-110"
           />
-          {/* Sin overlay - imagen completamente visible */}
+          {/* Overlay degradado más sutil y elegante */}
+          <div className="absolute inset-0 bg-gradient-to-br from-charcoal-900/60 via-charcoal-900/40 to-primary/30"></div>
+          {/* Vignette efecto para enfocar el centro */}
+          <div className="absolute inset-0" style={{
+            background: 'radial-gradient(circle at center, transparent 0%, transparent 40%, rgba(0,0,0,0.4) 100%)'
+          }}></div>
         </div>
 
-        {/* Efectos de luz muy sutiles - sin dorado intenso */}
-        <div className="absolute top-1/3 -left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/3 -right-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl"></div>
+        {/* Fondo para Mobile - Grid de 4 imágenes */}
+        <div className="lg:hidden absolute inset-0">
+          <div className="grid grid-cols-2 grid-rows-2 w-full h-full gap-1">
+            <div className="relative overflow-hidden">
+              <img src={productImages[2]} alt="Koken Postres" className="w-full h-full object-cover" />
+            </div>
+            <div className="relative overflow-hidden">
+              <img src={productImages[26]} alt="Koken Eventos" className="w-full h-full object-cover" />
+            </div>
+            <div className="relative overflow-hidden">
+              <img src={productImages[15]} alt="Koken Productos" className="w-full h-full object-cover" />
+            </div>
+            <div className="relative overflow-hidden">
+              <img src={productImages[9]} alt="Koken Delantal" className="w-full h-full object-cover" />
+            </div>
+          </div>
+          {/* Overlay más oscuro para mobile para mejor legibilidad */}
+          <div className="absolute inset-0 bg-gradient-to-br from-charcoal-900/70 via-charcoal-900/60 to-charcoal-900/70"></div>
+        </div>
+
+        {/* Efectos de luz mejorados */}
+        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-400/5 rounded-full blur-3xl animate-breathe"></div>
+        <div className="absolute top-1/2 right-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
         
-        <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 lg:py-0">
           <div className="max-w-7xl mx-auto w-full">
-            {/* Grid con más espacio entre componentes */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 xl:gap-32 items-center">
+            {/* Grid simple y equilibrado */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-48 items-center">
               
-              {/* 🎨 IZQUIERDA - Logo Estilo Sticker Premium */}
-              <div className="flex justify-center lg:justify-end opacity-0 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                <div className="relative group" style={{ perspective: '1200px' }}>
-                  {/* Resplandor ambiental suave */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-white/5 to-primary/6 rounded-full blur-3xl scale-110 group-hover:scale-[1.20] transition-all duration-700 animate-pulse" style={{ animationDuration: '6s' }}></div>
+              {/* 🎨 IZQUIERDA - Logo Limpio y Elegante */}
+              <div className="flex flex-col items-center justify-center opacity-0 animate-fade-in-up order-1" style={{ animationDelay: '0.2s' }}>
+                
+                {/* Logo con efecto glow y resplandor */}
+                <div className="relative group">
+                  {/* Resplandor de fondo animado */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-gold-400/30 to-secondary/30 rounded-full blur-3xl animate-pulse group-hover:scale-110 transition-transform duration-700"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold-300/20 to-primary/20 rounded-full blur-2xl animate-breathe"></div>
                   
-                  {/* Contenedor del Sticker con efecto 3D mejorado */}
-                  <div 
-                    className="relative transition-all duration-700 animate-floatSoft group-hover:animate-none"
-                    style={{
-                      transform: 'translateZ(0) rotateX(3deg) rotateY(-3deg)',
-                      transformStyle: 'preserve-3d'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.transform = 'translateZ(10px) rotateX(-2deg) rotateY(5deg) scale(1.03)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.transform = 'translateZ(0) rotateX(3deg) rotateY(-3deg)';
-                    }}
-                  >
-                    {/* Sombra realista multicapa */}
-                    <div 
-                      className="absolute inset-0 rounded-full transition-all duration-700"
+                  {/* Logo con filtros y efectos */}
+                  <div className="relative">
+                    <img 
+                      src={logoKoken} 
+                      alt="Koken Pastelería" 
+                      className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-80 lg:h-80 object-contain animate-floatSoft drop-shadow-[0_0_25px_rgba(236,72,153,0.4)] hover:drop-shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all duration-700 hover:scale-105 filter brightness-110"
                       style={{
-                        transform: 'translateZ(-15px) translateY(8px)',
-                        boxShadow: '0 20px 50px rgba(0, 0, 0, 0.35), 0 10px 20px rgba(0, 0, 0, 0.25), 0 5px 10px rgba(0, 0, 0, 0.15)',
-                        filter: 'blur(12px)',
-                        opacity: 0.7
+                        filter: 'drop-shadow(0 0 30px rgba(251, 191, 36, 0.3)) drop-shadow(0 0 15px rgba(236, 72, 153, 0.4))'
                       }}
-                    ></div>
-                    
-                    {/* Borde exterior sutil (simula grosor del sticker) */}
-                    <div 
-                      className="absolute -inset-1 rounded-full bg-gradient-to-br from-gray-100 to-gray-200 transition-all duration-700"
-                      style={{
-                        transform: 'translateZ(18px)',
-                        boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)'
-                      }}
-                    ></div>
-                    
-                    {/* Sticker principal con textura */}
-                    <div 
-                      className="relative bg-white rounded-full p-3 sm:p-4 transition-all duration-700 overflow-hidden"
-                      style={{
-                        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.18), 0 5px 15px rgba(0, 0, 0, 0.12), inset 0 2px 2px rgba(255, 255, 255, 0.9), inset 0 -1px 2px rgba(0, 0, 0, 0.05)',
-                        transform: 'translateZ(20px)',
-                        background: 'linear-gradient(135deg, #ffffff 0%, #fefefe 50%, #fcfcfc 100%)'
-                      }}
-                    >
-                      {/* Logo Principal con sombra interna */}
-                      <img 
-                        src={logoKoken} 
-                        alt="Koken Pastelería" 
-                        className="relative w-36 h-36 sm:w-44 sm:h-44 md:w-52 md:h-52 lg:w-60 lg:h-60 xl:w-68 xl:h-68 object-contain transition-transform duration-700"
-                        style={{
-                          filter: 'drop-shadow(0 3px 6px rgba(0, 0, 0, 0.12)) drop-shadow(0 1px 3px rgba(0, 0, 0, 0.08))',
-                          transform: 'translateZ(5px)'
-                        }}
-                      />
-                      
-                      {/* Brillo superior realista */}
-                      <div 
-                        className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-white/50 via-white/20 to-transparent rounded-t-full blur-sm pointer-events-none transition-opacity duration-700 group-hover:opacity-70"
-                        style={{ transform: 'translateY(-5%)' }}
-                      ></div>
-                      
-                      {/* Reflejo de luz lateral */}
-                      <div 
-                        className="absolute top-1/4 -left-4 w-12 h-3/4 bg-gradient-to-r from-white/30 to-transparent blur-lg pointer-events-none opacity-60 group-hover:opacity-100 transition-opacity duration-700"
-                        style={{ transform: 'rotate(-10deg)' }}
-                      ></div>
-                      
-                      {/* Textura sutil del material */}
-                      <div 
-                        className="absolute inset-0 rounded-full pointer-events-none opacity-20"
-                        style={{
-                          backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.8) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(255,255,255,0.6) 0%, transparent 40%)',
-                          mixBlendMode: 'overlay'
-                        }}
-                      ></div>
-                    </div>
-                    
-                    {/* Esquina levantada mejorada */}
-                    <div 
-                      className="absolute -top-2 -right-2 w-10 h-10 opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none"
-                      style={{
-                        transform: 'rotate(45deg) translateZ(25px)',
-                        transformOrigin: 'bottom left'
-                      }}
-                    >
-                      <div 
-                        className="w-full h-full rounded-full"
-                        style={{
-                          background: 'linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(245,245,245,0.85) 50%, rgba(235,235,235,0.75) 100%)',
-                          boxShadow: '-3px 3px 12px rgba(0, 0, 0, 0.25), inset 1px -1px 2px rgba(0, 0, 0, 0.1)'
-                        }}
-                      ></div>
-                    </div>
-                    
-                    {/* Anillo de brillo sutil */}
-                    <div 
-                      className="absolute -inset-2 rounded-full border-2 border-white/20 pointer-events-none transition-all duration-700 group-hover:border-primary/20"
-                      style={{
-                        transform: 'translateZ(22px)',
-                        filter: 'blur(1px)'
-                      }}
-                    ></div>
+                    />
                   </div>
                 </div>
-              </div>
-
-              {/* 📸 DERECHA - Imagen que Resalta */}
-              <div className="flex justify-center lg:justify-start opacity-0 animate-fade-in-up" style={{ animationDelay: '0.5s' }}>
-                <div className="relative group">
-                  {/* Fondo oscuro para contraste */}
-                  <div className="absolute inset-0 bg-charcoal-900/80 rounded-[40px] blur-3xl scale-110"></div>
-                  
-                  {/* Resplandor más fuerte */}
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-white/10 to-white/15 rounded-[40px] blur-2xl scale-105 group-hover:scale-110 transition-all duration-1000"></div>
-                  
-                  {/* Contenedor de la imagen - Con más contraste */}
-                  <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg aspect-[3/4] rounded-[40px] overflow-hidden border-2 border-white/25 hover:border-white/40 transition-all duration-700" style={{
-                    boxShadow: '0 20px 60px rgba(0,0,0,0.5), 0 0 40px rgba(255,255,255,0.1), inset 0 0 40px rgba(255,255,255,0.05)'
-                  }}>
-                    {/* Imagen maestra.jpg */}
-                    <img 
-                      src={maestraImg} 
-                      alt="Koken Pastelería - Presentación" 
-                      className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-1000"
-                    />
-                    
-                    {/* Overlay muy sutil para profundidad */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/30 via-transparent to-transparent"></div>
-                    
-                    {/* Marco interior más visible */}
-                    <div className="absolute inset-6 border border-white/10 rounded-[30px] pointer-events-none"></div>
-                  </div>
-
-                  {/* Badge flotante con colores del logo */}
-                  <div className="absolute -bottom-4 -right-4 bg-charcoal-900/95 backdrop-blur-xl rounded-xl px-4 py-3 border border-primary/30 hover:border-primary/50 transition-all duration-500 shadow-2xl">
-                    <div className="flex items-center gap-2.5">
-                      <div className="text-center border-r border-primary/20 pr-2.5">
-                        <div className="text-lg font-bold text-primary font-cinzel">100%</div>
-                        <div className="text-[10px] text-white/60 font-cormorant uppercase tracking-wider">Artesanal</div>
+                
+                {/* Badge equilibrado - semi-transparente */}
+                {showBadge && (
+                  <div className="mt-6 lg:mt-24 bg-white/55 backdrop-blur-xl border-2 border-gold-400/70 rounded-2xl px-6 py-3 lg:px-8 lg:py-4 transition-all duration-500 hover:scale-105 hover:bg-white/65">
+                    <div className="flex items-center gap-4 lg:gap-6">
+                      <div className="text-center border-r-2 border-gold-400/60 pr-4 lg:pr-6">
+                        <div className="text-2xl lg:text-3xl font-black text-charcoal-900 font-cinzel">100%</div>
+                        <div className="text-xs lg:text-sm text-charcoal-800 font-cormorant font-bold uppercase tracking-wider">Artesanal</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-lg font-bold text-primary font-cinzel">Premium</div>
-                        <div className="text-[10px] text-white/60 font-cormorant uppercase tracking-wider">Calidad</div>
+                        <div className="text-2xl lg:text-3xl font-black bg-gradient-to-r from-primary to-gold-600 bg-clip-text text-transparent font-cinzel">PREMIUM</div>
+                        <div className="text-xs lg:text-sm text-charcoal-800 font-cormorant font-bold uppercase tracking-wider">Calidad</div>
                       </div>
                     </div>
                   </div>
+                )}
+              </div>
 
-                  {/* Decoraciones más visibles */}
-                  <div className="absolute -top-4 -left-4 w-20 h-20 border-t-2 border-l-2 border-white/20 rounded-tl-[25px] group-hover:border-white/30 transition-all duration-700"></div>
-                  <div className="absolute -bottom-4 -right-4 w-20 h-20 border-b-2 border-r-2 border-white/20 rounded-br-[25px] group-hover:border-white/30 transition-all duration-700"></div>
+              {/* 📸 DERECHA - Imagen Limpia y Balanceada */}
+              <div className="flex justify-center items-center opacity-0 animate-fade-in-up order-2 lg:order-2" style={{ animationDelay: '0.4s' }}>
+                <div className="relative group max-w-xs sm:max-w-sm lg:max-w-lg w-full">
+                  
+                  {/* Imagen simple con marco elegante */}
+                  <div className="relative aspect-[3/4] rounded-[30px] lg:rounded-[50px] overflow-hidden border border-white/30 group-hover:border-white/40 transition-all duration-700" style={{
+                    boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 0 40px rgba(236, 72, 153, 0.1)'
+                  }}>
+                    <img 
+                      src={maestra2Img} 
+                      alt="Koken Pastelería" 
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                    />
+                    
+                    {/* Overlay suave para profundidad */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/40 via-transparent to-transparent"></div>
+                    
+                    {/* Marco interior minimalista */}
+                    <div className="absolute inset-4 lg:inset-8 border border-white/10 rounded-[20px] lg:rounded-[40px] pointer-events-none"></div>
+                  </div>
+
+                  {/* Solo una decoración elegante en esquina */}
+                  <div className="hidden lg:block absolute -top-6 -right-6 w-24 h-24 border-t-2 border-r-2 border-primary/20 rounded-tr-[30px] group-hover:border-primary/30 transition-all duration-700"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Flecha scroll - Animación sutil */}
-        <div className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 opacity-50 hover:opacity-80 transition-opacity duration-500">
-          <div className="flex flex-col items-center gap-2">
+        {/* Scroll indicator minimalista */}
+        <div className="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
+          <div className="flex flex-col items-center gap-2 opacity-40 hover:opacity-70 transition-opacity duration-500">
             <svg 
-              className="w-6 h-6 text-white animate-bounce" 
-              style={{ animationDuration: '2s' }}
+              className="w-5 h-5 text-white animate-bounce" 
+              style={{ animationDuration: '2.5s' }}
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
@@ -359,14 +311,6 @@ function LandingPage() {
         <div className="max-w-7xl mx-auto">
           {/* Encabezado de sección premium */}
           <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-400"></div>
-              <span className="text-sm font-playfair text-gold-600 tracking-[0.3em] uppercase">
-                Galería
-              </span>
-              <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-400"></div>
-            </div>
-            
             <h2 className="text-5xl md:text-6xl font-black text-charcoal-900 mb-6 font-cinzel">
               Nuestras <span className="text-primary">Creaciones</span>
             </h2>
