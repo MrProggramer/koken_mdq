@@ -83,14 +83,14 @@ function LandingPage() {
           : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex items-center h-10 md:h-12 transition-all duration-700 ${
+          <div className={`flex items-center h-12 md:h-14 transition-all duration-700 ${
             isScrolled ? 'justify-between' : 'justify-between'
           }`}>
             {/* Logo - Aparece solo al hacer scroll */}
             <div className={`flex items-center group cursor-pointer transition-all duration-700 ${
               isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none absolute left-4 sm:left-6 lg:left-8'
             }`}>
-              <h1 className="font-cooper font-black tracking-tight text-primary text-xl md:text-2xl lg:text-3xl transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(220,60,70,0.6)] group-hover:text-shadow-lg" style={{ 
+              <h1 className="font-cooper font-black tracking-tight text-primary text-2xl md:text-3xl lg:text-4xl transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(220,60,70,0.6)] group-hover:text-shadow-lg" style={{ 
                 textShadow: 'none',
                 transition: 'all 0.5s ease'
               }}>
@@ -100,13 +100,13 @@ function LandingPage() {
             
             {/* Desktop Navigation */}
             <nav className={`hidden lg:flex items-center transition-all duration-700 ${
-              isScrolled ? 'gap-10' : 'flex-1 justify-center gap-16'
+              isScrolled ? 'gap-20' : 'flex-1 justify-center gap-32'
             }`}>
-              {['Productos', 'Nosotros', 'Servicios', 'Contacto'].map((item) => (
+              {['Productos', 'Nosotros', 'Servicios'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className={`relative font-cormorant text-lg font-medium transition-all duration-300 group ${
+                  className={`relative font-cormorant text-2xl font-medium transition-all duration-300 group ${
                     isScrolled 
                       ? 'text-charcoal-700 hover:text-gold-600' 
                       : 'text-white/90 hover:text-white'
@@ -121,30 +121,43 @@ function LandingPage() {
             </nav>
 
             {/* CTA Button Desktop */}
-            <div className={`hidden lg:block transition-all duration-700`}>
+            <div className={`hidden lg:flex items-center transition-all duration-700`}>
               <a
                 href="#contacto"
-                className={`relative overflow-hidden px-5 py-2 rounded-full font-cormorant font-semibold text-sm tracking-wider transition-all duration-300 hover:scale-105 hover:shadow-gold ${
+                className={`group relative overflow-hidden px-4 py-1 rounded-full font-cormorant font-medium text-xl tracking-wide transition-all duration-300 hover:scale-105 flex items-center gap-2 ${
                   isScrolled
-                    ? 'bg-gradient-to-r from-gold-400 to-gold-600 text-white'
-                    : 'bg-white text-primary border-2 border-white'
+                    ? 'bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-white shadow-md hover:shadow-lg'
+                    : 'bg-white text-primary border border-white shadow-[0_2px_8px_rgba(255,255,255,0.25)] hover:shadow-[0_4px_12px_rgba(255,255,255,0.35)]'
                 }`}
+                style={{
+                  boxShadow: isScrolled 
+                    ? '0 2px 10px rgba(251, 191, 36, 0.25)' 
+                    : '0 2px 8px rgba(255, 255, 255, 0.25)'
+                }}
               >
                 <span className="relative z-10">Contactanos</span>
-                <div className="absolute inset-0 bg-shimmer opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
+                <svg 
+                  className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                  fill="none" 
+                  stroke="currentColor" 
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               </a>
             </div>
 
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className={`lg:hidden p-1 rounded-lg transition-all duration-700 ${
+              className={`lg:hidden p-1.5 rounded-lg transition-all duration-700 ${
                 isScrolled 
                   ? 'text-charcoal-800 hover:bg-gold-100' 
                   : 'text-white hover:bg-white/10'
               } ${!isScrolled ? 'absolute right-4 sm:right-6' : ''}`}
             >
-              {isMobileMenuOpen ? <FiX className="text-xl" /> : <FiMenu className="text-xl" />}
+              {isMobileMenuOpen ? <FiX className="text-2xl" /> : <FiMenu className="text-2xl" />}
             </button>
           </div>
         </div>
@@ -154,7 +167,7 @@ function LandingPage() {
           isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <div className="bg-white/95 backdrop-blur-xl border-t border-gold-200/30 px-6 py-6 space-y-4">
-            {['Productos', 'Nosotros', 'Servicios', 'Contacto'].map((item) => (
+            {['Productos', 'Nosotros', 'Servicios'].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
@@ -216,26 +229,26 @@ function LandingPage() {
         <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-400/5 rounded-full blur-3xl animate-breathe"></div>
         <div className="absolute top-1/2 right-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
         
-        <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 py-8 lg:py-0">
+        <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 pb-8 lg:py-0">
           <div className="max-w-7xl mx-auto w-full">
             {/* Grid simple y equilibrado */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-48 items-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-48 items-center justify-items-center">
               
               {/* 🎨 IZQUIERDA - Logo Limpio y Elegante */}
-              <div className="flex flex-col items-center justify-center opacity-0 animate-fade-in-up order-1" style={{ animationDelay: '0.2s' }}>
+              <div className="flex flex-col items-center justify-center opacity-0 animate-fade-in-up order-1 w-full" style={{ animationDelay: '0.2s' }}>
                 
                 {/* Logo con efecto glow y resplandor */}
-                <div className="relative group">
+                <div className="relative group w-3/4 mx-auto">
                   {/* Resplandor de fondo animado */}
                   <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-gold-400/30 to-secondary/30 rounded-full blur-3xl animate-pulse group-hover:scale-110 transition-transform duration-700"></div>
                   <div className="absolute inset-0 bg-gradient-to-br from-gold-300/20 to-primary/20 rounded-full blur-2xl animate-breathe"></div>
                   
                   {/* Logo con filtros y efectos */}
-                  <div className="relative">
+                  <div className="relative flex justify-center">
                     <img 
                       src={logoKoken} 
                       alt="Koken Pastelería" 
-                      className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-80 lg:h-80 object-contain animate-floatSoft drop-shadow-[0_0_25px_rgba(236,72,153,0.4)] hover:drop-shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all duration-700 hover:scale-105 filter brightness-110"
+                      className="w-24 h-24 sm:w-30 sm:h-30 md:w-42 md:h-42 lg:w-60 lg:h-60 object-contain animate-floatSoft drop-shadow-[0_0_25px_rgba(236,72,153,0.4)] hover:drop-shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all duration-700 hover:scale-105 filter brightness-110"
                       style={{
                         filter: 'drop-shadow(0 0 30px rgba(251, 191, 36, 0.3)) drop-shadow(0 0 15px rgba(236, 72, 153, 0.4))'
                       }}
@@ -261,8 +274,8 @@ function LandingPage() {
               </div>
 
               {/* 📸 DERECHA - Imagen Limpia y Balanceada */}
-              <div className="flex justify-center items-center opacity-0 animate-fade-in-up order-2 lg:order-2" style={{ animationDelay: '0.4s' }}>
-                <div className="relative group max-w-xs sm:max-w-sm lg:max-w-lg w-full">
+              <div className="flex justify-center items-center opacity-0 animate-fade-in-up order-2 lg:order-2 w-full" style={{ animationDelay: '0.4s' }}>
+                <div className="relative group w-3/4 max-w-xs sm:max-w-sm lg:max-w-md mx-auto">
                   
                   {/* Imagen simple con marco elegante */}
                   <div className="relative aspect-[3/4] rounded-[30px] lg:rounded-[50px] overflow-hidden border border-white/30 group-hover:border-white/40 transition-all duration-700" style={{
