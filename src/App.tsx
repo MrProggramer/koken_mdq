@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { FiInstagram, FiFacebook, FiMail, FiPhone, FiMapPin, FiMenu, FiX } from 'react-icons/fi'
-import { GiCupcake, GiCroissant, GiPartyFlags } from 'react-icons/gi'
-import { FaBirthdayCake } from 'react-icons/fa'
+import { FaWhatsapp } from 'react-icons/fa'
+import { ShoppingBag, Users, Sparkles, Cake, PartyPopper, Heart, Coffee } from 'lucide-react'
 
 // Importar logo e imagen maestra
 import logoKoken from './assets/logo_koken_1.png'
@@ -162,28 +162,119 @@ function LandingPage() {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Premium Version */}
         <div className={`lg:hidden transition-all duration-500 overflow-hidden ${
-          isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          isMobileMenuOpen ? 'max-h-[600px] opacity-100' : 'max-h-0 opacity-0'
         }`}>
-          <div className="bg-white/95 backdrop-blur-xl border-t border-gold-200/30 px-6 py-6 space-y-4">
-            {['Productos', 'Nosotros', 'Servicios'].map((item) => (
+          <div className="relative bg-white/95 backdrop-blur-2xl border-t border-primary/20 shadow-2xl overflow-hidden">
+            {/* Gradientes de fondo superpuestos */}
+            <div className="absolute inset-0 bg-gradient-to-br from-secondary/8 via-transparent to-gold-100/30 pointer-events-none"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-cream-50/80 via-white/50 to-secondary/10 pointer-events-none"></div>
+            <div className="absolute top-0 left-0 right-0 h-32 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none"></div>
+            <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-secondary/8 to-transparent pointer-events-none"></div>
+            
+            {/* Efectos de luz sutiles */}
+            <div className="absolute top-10 right-10 w-40 h-40 bg-gold-200/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div className="absolute bottom-20 left-10 w-32 h-32 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
+            
+            {/* Contenido del menú */}
+            <div className="relative z-10">
+            <div className="px-6 pt-6 pb-4 space-y-2 flex flex-col items-center">
+              {/* Menu Items con iconos */}
+              {[
+                { name: 'Productos', icon: <ShoppingBag size={24} strokeWidth={2} /> },
+                { name: 'Nosotros', icon: <Users size={24} strokeWidth={2} /> },
+                { name: 'Servicios', icon: <Sparkles size={24} strokeWidth={2} /> }
+              ].map((item, idx) => (
+                <a
+                  key={item.name}
+                  href={`#${item.name.toLowerCase()}`}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                  className="group w-full max-w-xs flex items-center justify-center gap-4 px-6 py-3.5 rounded-2xl font-cormorant text-xl font-semibold text-charcoal-700 hover:text-white hover:bg-gradient-to-r hover:from-primary hover:to-gold-400 transition-all duration-300 hover:scale-[1.02] hover:shadow-lg"
+                  style={{
+                    animation: isMobileMenuOpen ? `slideInRight 0.3s ease-out ${idx * 0.1}s both` : 'none'
+                  }}
+                >
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-secondary/20 via-gold-100 to-gold-200 group-hover:from-white group-hover:to-white flex items-center justify-center text-primary group-hover:text-primary transition-all duration-300 group-hover:scale-110 group-hover:rotate-6">
+                    {item.icon}
+                  </div>
+                  <span className="font-bold">{item.name}</span>
+                </a>
+              ))}
+            </div>
+
+            {/* Divider elegante */}
+            <div className="px-6 py-3">
+              <div className="h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent"></div>
+            </div>
+
+            {/* CTA Button Premium */}
+            <div className="px-6 py-4">
               <a
-                key={item}
-                href={`#${item.toLowerCase()}`}
+                href="https://wa.me/5492235242957"
+                target="_blank"
+                rel="noopener noreferrer"
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block font-cormorant text-lg font-medium text-charcoal-700 hover:text-gold-600 transition-colors py-2"
+                className="group relative overflow-hidden flex items-center justify-center gap-3 text-white px-8 py-4 rounded-2xl font-cormorant font-bold text-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:scale-[1.02]"
+                style={{
+                  animation: isMobileMenuOpen ? 'slideInRight 0.3s ease-out 0.3s both' : 'none',
+                  background: 'linear-gradient(135deg, #25D366 0%, #128C7E 100%)',
+                  boxShadow: '0 4px 20px rgba(37, 211, 102, 0.4)'
+                }}
               >
-                {item}
+                <FaWhatsapp className="text-3xl relative z-10" />
+                <span className="relative z-10">Contáctanos</span>
+                <svg className="w-5 h-5 relative z-10 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  style={{
+                    background: 'linear-gradient(135deg, #128C7E 0%, #075E54 100%)'
+                  }}
+                ></div>
               </a>
-            ))}
-             <a
-               href="#contacto"
-               onClick={() => setIsMobileMenuOpen(false)}
-               className="block text-center bg-gradient-to-r from-gold-400 to-gold-600 text-white px-6 py-3 rounded-full font-cormorant font-semibold mt-4"
-             >
-               Contactanos
-             </a>
+            </div>
+
+            {/* Información rápida */}
+            <div className="px-6 pt-3 pb-8">
+              <div className="bg-gradient-to-br from-secondary/10 via-gold-50 to-cream-100 rounded-2xl p-4 border border-primary/20"
+                style={{
+                  animation: isMobileMenuOpen ? 'slideInRight 0.3s ease-out 0.4s both' : 'none'
+                }}
+              >
+                <p className="text-xs text-primary font-cormorant font-semibold mb-3 uppercase tracking-wider">Visitanos</p>
+                <div className="space-y-2">
+                  <div className="flex items-center gap-3 text-charcoal-700">
+                    <FiMapPin className="text-primary flex-shrink-0" />
+                    <span className="text-sm font-cormorant">Bernardo de Irigoyen 3694, MDQ</span>
+                  </div>
+                  <div className="flex items-center gap-3 text-charcoal-700">
+                    <FiPhone className="text-primary flex-shrink-0" />
+                    <span className="text-sm font-cormorant">0223 524-2957</span>
+                  </div>
+                </div>
+                
+                {/* Redes sociales */}
+                <div className="flex gap-2 mt-4 pt-3 border-t border-primary/20">
+                  {[
+                    { icon: <FiInstagram />, label: 'Instagram', link: 'https://www.instagram.com/koken.mdq/' },
+                    { icon: <FiFacebook />, label: 'Facebook', link: 'https://www.facebook.com/koken.mdq/' }
+                  ].map((social, idx) => (
+                    <a
+                      key={idx}
+                      href={social.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex-1 flex items-center justify-center gap-2 bg-white hover:bg-gradient-to-r hover:from-primary hover:to-gold-400 text-charcoal-700 hover:text-white px-3 py-2 rounded-xl transition-all duration-300 hover:scale-105 border border-primary/20 hover:border-primary"
+                    >
+                      {social.icon}
+                      <span className="text-xs font-cormorant font-semibold">{social.label}</span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+            </div>
           </div>
         </div>
       </header>
@@ -248,7 +339,7 @@ function LandingPage() {
                     <img 
                       src={logoKoken} 
                       alt="Koken Pastelería" 
-                      className="w-24 h-24 sm:w-30 sm:h-30 md:w-42 md:h-42 lg:w-60 lg:h-60 object-contain animate-floatSoft drop-shadow-[0_0_25px_rgba(236,72,153,0.4)] hover:drop-shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all duration-700 hover:scale-105 filter brightness-110"
+                      className="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-60 lg:h-60 object-contain animate-floatSoft drop-shadow-[0_0_25px_rgba(236,72,153,0.4)] hover:drop-shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all duration-700 hover:scale-105 filter brightness-110"
                       style={{
                         filter: 'drop-shadow(0 0 30px rgba(251, 191, 36, 0.3)) drop-shadow(0 0 15px rgba(236, 72, 153, 0.4))'
                       }}
@@ -320,189 +411,101 @@ function LandingPage() {
 
       {/* Resto de las secciones continúan igual por ahora... */}
       {/* Sección Productos */}
-      <section id="productos" className="relative py-24 px-4 bg-gradient-to-b from-cream-50 to-white">
-        <div className="max-w-7xl mx-auto">
-          {/* Encabezado de sección premium */}
+      <section id="productos" className="relative py-24 px-4 bg-gradient-to-b from-cream-50 to-white overflow-hidden">
+        {/* Efectos de fondo decorativos */}
+        <div className="absolute top-20 left-10 w-96 h-96 bg-primary/3 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-gold-400/5 rounded-full blur-3xl"></div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Encabezado de sección premium mejorado */}
           <div className="text-center mb-20">
-            <h2 className="text-5xl md:text-6xl font-black text-charcoal-900 mb-6 font-cinzel">
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-black text-charcoal-900 mb-6 font-cinzel leading-tight">
               Nuestras <span className="text-primary">Creaciones</span>
             </h2>
             
             <div className="flex justify-center mb-8">
-              <div className="h-1 w-32 bg-gradient-to-r from-primary via-gold-400 to-secondary rounded-full"></div>
+              <div className="h-1.5 w-32 bg-gradient-to-r from-primary via-gold-400 to-secondary rounded-full shadow-lg" style={{
+                boxShadow: '0 4px 12px rgba(220, 60, 70, 0.3)'
+              }}></div>
             </div>
             
-            <p className="text-xl text-charcoal-600 max-w-3xl mx-auto font-cormorant leading-relaxed">
-              Cada creación es una obra de arte única, elaborada con ingredientes premium 
+            <p className="text-xl md:text-2xl text-charcoal-600 max-w-3xl mx-auto font-cormorant leading-relaxed">
+              Cada creación es una <span className="font-bold text-primary">obra de arte única</span>, elaborada con ingredientes premium 
               y el toque especial que nos distingue
             </p>
           </div>
 
-          {/* Grid de productos con efectos premium */}
+          {/* Grid de productos con efectos premium mejorados */}
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
             {productImages.slice(0, 12).map((img, idx) => (
               <div
                 key={idx}
-                className="group relative overflow-hidden rounded-2xl aspect-square shadow-soft hover:shadow-elegant transition-all duration-500 hover:scale-[1.02] cursor-pointer"
+                className="group relative overflow-hidden rounded-3xl aspect-square shadow-lg hover:shadow-2xl transition-all duration-500 hover:scale-[1.03] hover:-translate-y-2 cursor-pointer bg-white"
                 style={{
-                  animationDelay: `${idx * 0.1}s`
+                  animationDelay: `${idx * 0.05}s`
                 }}
               >
-                {/* Imagen */}
-                <img
-                  src={img}
-                  alt={`Producto ${idx + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                />
+                {/* Imagen con efecto de zoom */}
+                <div className="relative w-full h-full overflow-hidden">
+                  <img
+                    src={img}
+                    alt={`Producto ${idx + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-125 transition-transform duration-1000 ease-out"
+                  />
+                  {/* Efecto de brillo al pasar */}
+                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-tr from-transparent via-white/10 to-transparent group-hover:translate-x-full transform -translate-x-full" 
+                    style={{ transition: 'transform 1s ease-out, opacity 0.7s' }}
+                  ></div>
+                </div>
                 
-                {/* Overlay premium con glassmorphism */}
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/90 via-charcoal-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                {/* Overlay premium con glassmorphism mejorado */}
+                <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/95 via-charcoal-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl">
+                  <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
                     <div className="flex items-center justify-between">
-                      <div>
+                      <div className="flex-1">
                         <p className="text-white font-playfair font-bold text-lg mb-1">Delicia Premium</p>
-                        <p className="text-gold-300 font-cormorant text-sm">Ver detalles →</p>
+                        <p className="text-gold-300 font-cormorant text-sm flex items-center gap-1">
+                          Ver detalles 
+                          <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                          </svg>
+                        </p>
                       </div>
-                      <div className="w-12 h-12 rounded-full bg-gold-400/20 backdrop-blur-sm flex items-center justify-center border border-gold-400/30">
-                        <span className="text-gold-300 text-xl">+</span>
+                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-gold-400 backdrop-blur-sm flex items-center justify-center border-2 border-white/30 shadow-lg group-hover:rotate-12 transition-transform duration-500">
+                        <Sparkles className="text-white" size={24} strokeWidth={2.5} />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Borde dorado en hover */}
-                <div className="absolute inset-0 border-2 border-gold-400/0 group-hover:border-gold-400/50 rounded-2xl transition-all duration-500"></div>
+                {/* Borde dorado animado en hover */}
+                <div className="absolute inset-0 border-4 border-transparent group-hover:border-gold-400/60 rounded-3xl transition-all duration-500"></div>
+                
+                {/* Efecto de esquinas decorativas */}
+                <div className="absolute top-3 left-3 w-6 h-6 border-t-2 border-l-2 border-white/0 group-hover:border-white/50 rounded-tl-2xl transition-all duration-500"></div>
+                <div className="absolute bottom-3 right-3 w-6 h-6 border-b-2 border-r-2 border-white/0 group-hover:border-white/50 rounded-br-2xl transition-all duration-500"></div>
               </div>
             ))}
           </div>
 
-          {/* CTA Ver más */}
-          <div className="text-center mt-16">
-            <button className="group relative inline-flex items-center gap-3 bg-gradient-to-r from-primary to-secondary text-white px-10 py-4 rounded-full font-playfair font-bold text-lg transition-all hover:scale-105 shadow-elegant hover:shadow-gold overflow-hidden">
-              <span className="relative z-10">Ver Toda la Colección</span>
-              <span className="relative z-10 text-2xl transition-transform group-hover:translate-x-1">→</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-gold-500 to-gold-600 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Sección Testimonios Premium */}
-      <section className="relative py-24 px-4 bg-gradient-to-b from-white via-cream-50 to-white overflow-hidden">
-        {/* Decoración de fondo */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full max-w-4xl">
-          <div className="absolute inset-0 bg-gradient-to-r from-gold-100/30 to-cream-200/30 rounded-full blur-3xl"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          {/* Encabezado */}
-          <div className="text-center mb-20">
-            <div className="inline-flex items-center gap-3 mb-6">
-              <div className="h-px w-12 bg-gradient-to-r from-transparent to-gold-400"></div>
-              <span className="text-sm font-playfair text-gold-600 tracking-[0.3em] uppercase">
-                Testimonios
-              </span>
-              <div className="h-px w-12 bg-gradient-to-l from-transparent to-gold-400"></div>
-            </div>
-            
-            <h2 className="text-5xl md:text-6xl font-black text-charcoal-900 mb-6 font-cinzel">
-              Lo Que Dicen <span className="text-primary">Nuestros Clientes</span>
-            </h2>
-            
-            <div className="flex justify-center mb-8">
-              <div className="h-1 w-32 bg-gradient-to-r from-primary via-gold-400 to-secondary rounded-full"></div>
-            </div>
-          </div>
-
-          {/* Grid de testimonios */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'María González',
-                role: 'Novia 2024',
-                text: 'La torta de nuestra boda fue absolutamente espectacular. Cada detalle estuvo perfecto y el sabor fue inolvidable. ¡Todos nuestros invitados quedaron maravillados!',
-                rating: 5,
-                image: productImages[20]
-              },
-              {
-                name: 'Carlos Méndez',
-                role: 'Empresario',
-                text: 'Contratamos a Koken para un evento corporativo y superaron todas nuestras expectativas. Profesionalismo, calidad y un servicio excepcional.',
-                rating: 5,
-                image: productImages[21]
-              },
-              {
-                name: 'Laura Fernández',
-                role: 'Cliente Regular',
-                text: 'Desde que probé sus croissants, me convertí en cliente habitual. La calidad de los ingredientes y el amor que le ponen a cada producto se nota en cada bocado.',
-                rating: 5,
-                image: productImages[22]
-              }
-            ].map((testimonial, idx) => (
-              <div
-                key={idx}
-                className="group relative bg-white rounded-3xl p-8 border border-cream-300/50 hover:border-gold-400 transition-all duration-500 hover:scale-[1.02] shadow-soft hover:shadow-gold cursor-pointer"
-                style={{
-                  animationDelay: `${idx * 0.2}s`
-                }}
-              >
-                {/* Quote icon de fondo */}
-                <div className="absolute top-6 right-6 text-6xl text-gold-200/30 font-serif">"</div>
-
-                {/* Contenido */}
-                <div className="relative z-10">
-                  {/* Rating */}
-                  <div className="flex gap-1 mb-4">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <span key={i} className="text-gold-400 text-xl">★</span>
-                    ))}
-                  </div>
-
-                  {/* Texto del testimonio */}
-                  <p className="text-charcoal-600 font-cormorant text-lg leading-relaxed mb-6 italic">
-                    "{testimonial.text}"
-                  </p>
-
-                  {/* Autor */}
-                  <div className="flex items-center gap-4 pt-6 border-t border-gold-200/30">
-                    <div className="w-14 h-14 rounded-full overflow-hidden ring-2 ring-gold-400/30 group-hover:ring-gold-400 transition-all duration-300">
-                      <img 
-                        src={testimonial.image} 
-                        alt={testimonial.name}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="font-playfair font-bold text-charcoal-900">{testimonial.name}</h4>
-                      <p className="text-sm text-gold-600 font-cormorant">{testimonial.role}</p>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Decoración dorada en hover */}
-                <div className="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-gold-400/0 group-hover:border-gold-400 rounded-tl-3xl transition-all duration-500"></div>
-                <div className="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-gold-400/0 group-hover:border-gold-400 rounded-br-3xl transition-all duration-500"></div>
-              </div>
-            ))}
-          </div>
-
-          {/* Stats adicionales */}
-          <div className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-8">
-            {[
-              { number: '98%', label: 'Clientes Satisfechos' },
-              { number: '2500+', label: 'Pedidos Completados' },
-              { number: '250+', label: 'Eventos Realizados' },
-              { number: '4.9★', label: 'Calificación Promedio' }
-            ].map((stat, idx) => (
-              <div key={idx} className="text-center">
-                <div className="text-4xl md:text-5xl font-black bg-gradient-to-r from-primary to-gold-500 bg-clip-text text-transparent mb-2 font-cinzel">
-                  {stat.number}
-                </div>
-                <div className="text-sm text-charcoal-600 font-cormorant uppercase tracking-wider">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+          {/* CTA Visitanos */}
+          <div className="text-center mt-20">
+            <a 
+              href="#contacto"
+              className="group relative inline-flex items-center gap-4 bg-gradient-to-r from-primary via-secondary to-gold-400 text-white px-12 py-5 rounded-full font-playfair font-bold text-xl transition-all hover:scale-110 shadow-2xl hover:shadow-gold overflow-hidden"
+            >
+              {/* Efecto de brillo animado */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+              
+              <FiMapPin className="relative z-10" size={24} strokeWidth={2.5} />
+              <span className="relative z-10">Visitanos</span>
+              <svg className="relative z-10 w-6 h-6 transition-transform group-hover:translate-x-2 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+              
+              {/* Fondo alternativo en hover */}
+              <div className="absolute inset-0 bg-gradient-to-r from-gold-600 via-gold-500 to-primary opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </a>
           </div>
         </div>
       </section>
@@ -616,25 +619,25 @@ function LandingPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { 
-                icon: <FaBirthdayCake />, 
+                icon: <Cake size={32} strokeWidth={2} />, 
                 title: 'Cumpleaños', 
                 desc: 'Diseños personalizados para celebrar tu día más especial',
                 color: 'from-pink-400 to-pink-600'
               },
               { 
-                icon: <GiPartyFlags />, 
+                icon: <PartyPopper size={32} strokeWidth={2} />, 
                 title: 'Eventos Corporativos', 
                 desc: 'Catering premium para impresionar en reuniones',
                 color: 'from-blue-400 to-blue-600'
               },
               { 
-                icon: <GiCupcake />, 
+                icon: <Heart size={32} strokeWidth={2} />, 
                 title: 'Bodas', 
                 desc: 'Tortas nupciales elegantes que roban suspiros',
                 color: 'from-purple-400 to-purple-600'
               },
               { 
-                icon: <GiCroissant />, 
+                icon: <Coffee size={32} strokeWidth={2} />, 
                 title: 'Desayunos', 
                 desc: 'Experiencias matutinas premium para compartir',
                 color: 'from-amber-400 to-amber-600'
@@ -696,78 +699,95 @@ function LandingPage() {
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            {/* Información de contacto */}
-            <div className="space-y-10">
-              <div>
-                <h2 className="text-4xl md:text-5xl font-black mb-6 font-cinzel leading-tight">
-                  Visítanos en Nuestra
-                  <br />
-                  <span className="bg-gradient-to-r from-gold-300 to-gold-500 bg-clip-text text-transparent">
-                    Pastelería
-                  </span>
-                </h2>
-                <div className="h-1 w-32 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full mb-8"></div>
-                <p className="text-xl text-white/70 font-cormorant leading-relaxed">
-                  Estamos aquí para endulzar tus momentos más especiales
-                </p>
-              </div>
-              
-              <div className="space-y-6">
-                {[
-                  { icon: <FiMapPin />, title: 'Ubicación', content: 'Mar del Plata, Buenos Aires, Argentina' },
-                  { icon: <FiPhone />, title: 'Teléfono', content: '+54 223 XXX XXXX' },
-                  { icon: <FiMail />, title: 'Email', content: 'hola@koken.com.ar' }
-                ].map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-6 group cursor-pointer">
-                    <div className="mt-1">
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-2xl shadow-gold group-hover:scale-110 transition-transform duration-300">
-                        {item.icon}
-                      </div>
-                    </div>
-                    <div>
-                      <h3 className="font-bold text-lg mb-1 font-playfair text-gold-300">{item.title}</h3>
-                      <p className="text-white/80 font-cormorant text-lg">{item.content}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-              
-              {/* Redes sociales */}
-              <div className="pt-6">
-                <p className="text-sm text-white/60 mb-4 font-cormorant tracking-wider uppercase">Síguenos</p>
-                <div className="flex gap-4">
-                  {[
-                    { icon: <FiInstagram />, link: '#' },
-                    { icon: <FiFacebook />, link: '#' }
-                  ].map((social, idx) => (
-                    <a
-                      key={idx}
-                      href={social.link}
-                      className="w-14 h-14 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-2xl hover:bg-gradient-to-br hover:from-gold-400 hover:to-gold-600 hover:border-gold-400 transition-all duration-300 hover:scale-110 hover:shadow-gold"
-                    >
-                      {social.icon}
-                    </a>
-                  ))}
+          {/* Encabezado centrado */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black mb-6 font-cinzel leading-tight">
+              Visítanos en Nuestra
+              <br />
+              <span className="bg-gradient-to-r from-gold-300 to-gold-500 bg-clip-text text-transparent">
+                Pastelería
+              </span>
+            </h2>
+            <div className="h-1 w-32 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full mb-8 mx-auto"></div>
+            <p className="text-xl text-white/70 font-cormorant leading-relaxed max-w-2xl mx-auto">
+              Estamos aquí para endulzar tus momentos más especiales
+            </p>
+          </div>
+
+          {/* Información de contacto en grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+            {[
+              { icon: <FiMapPin />, title: 'Ubicación', content: 'Bernardo de Irigoyen 3694, Mar del Plata', link: 'https://www.google.com/maps/place/Bernardo+de+Irigoyen+3694,+B7600+Mar+del+Plata,+Provincia+de+Buenos+Aires', order: 'order-3 md:order-1' },
+              { icon: <FiPhone />, title: 'WhatsApp', content: '0223 524-2957', link: 'https://wa.me/5492235242957', order: 'order-1 md:order-2' },
+              { icon: <FiMail />, title: 'Email', content: 'hola@koken.com.ar', link: 'mailto:hola@koken.com.ar', order: 'order-2 md:order-3' }
+            ].map((item, idx) => (
+              <a 
+                key={idx} 
+                href={item.link} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={`flex flex-col items-center text-center gap-4 p-6 rounded-3xl bg-white/5 backdrop-blur-sm border border-white/10 hover:border-gold-400/50 hover:bg-white/10 transition-all duration-300 hover:scale-105 group ${item.order}`}
+              >
+                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center text-3xl shadow-gold group-hover:scale-110 transition-transform duration-300">
+                  {item.icon}
                 </div>
-              </div>
+                <div>
+                  <h3 className="font-bold text-xl mb-2 font-playfair text-gold-300">{item.title}</h3>
+                  <p className="text-white/80 font-cormorant text-lg group-hover:text-white transition-colors">{item.content}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+
+          {/* Mapa de Google Maps - Full Width */}
+          <div className="relative rounded-3xl overflow-hidden shadow-2xl border-2 border-gold-400/30 hover:border-gold-400/60 transition-all duration-500 mb-12">
+            <div className="relative w-full h-[450px] md:h-[500px]">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.7471589688987!2d-57.54845!3d-38.00561!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9584dc3f5f5f5f5f%3A0x5f5f5f5f5f5f5f5f!2sBernardo%20de%20Irigoyen%203694%2C%20Mar%20del%20Plata%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses!2sar!4v1234567890123!5m2!1ses!2sar"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Ubicación de Koken en Mar del Plata"
+                className="w-full h-full"
+              ></iframe>
+              
+              {/* Botón flotante para abrir en Google Maps */}
+              <a
+                href="https://www.google.com/maps/place/Bernardo+de+Irigoyen+3694,+B7600+Mar+del+Plata,+Provincia+de+Buenos+Aires"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute bottom-6 right-6 bg-gradient-to-r from-primary to-gold-400 text-white px-6 py-3 rounded-full font-cormorant font-bold text-base shadow-2xl hover:scale-110 transition-all duration-300 flex items-center gap-2 z-10"
+              >
+                <FiMapPin size={20} />
+                <span>Abrir en Google Maps</span>
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
             </div>
-            
-            {/* Galería de imágenes de contacto */}
-            <div className="grid grid-cols-2 gap-4">
-              {productImages.slice(16, 20).map((img, idx) => (
-                <div
+          </div>
+
+          {/* Redes sociales centradas */}
+          <div className="text-center">
+            <p className="text-sm text-white/60 mb-6 font-cormorant tracking-wider uppercase">Síguenos en Redes</p>
+            <div className="flex gap-4 justify-center">
+              {[
+                { icon: <FiInstagram />, link: 'https://www.instagram.com/koken.mdq/', name: 'Instagram' },
+                { icon: <FiFacebook />, link: 'https://www.facebook.com/koken.mdq/', name: 'Facebook' }
+              ].map((social, idx) => (
+                <a
                   key={idx}
-                  className="relative overflow-hidden rounded-2xl aspect-square shadow-2xl group cursor-pointer"
+                  href={social.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.name}
+                  className="w-16 h-16 rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center text-2xl hover:bg-gradient-to-br hover:from-gold-400 hover:to-gold-600 hover:border-gold-400 transition-all duration-300 hover:scale-110 hover:shadow-gold"
                 >
-                  <img
-                    src={img}
-                    alt={`Contacto ${idx + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/60 to-transparent group-hover:opacity-0 transition-opacity duration-500"></div>
-                  <div className="absolute inset-0 border-2 border-gold-400/0 group-hover:border-gold-400/70 rounded-2xl transition-all duration-500"></div>
-                </div>
+                  {social.icon}
+                </a>
               ))}
             </div>
           </div>
@@ -783,7 +803,7 @@ function LandingPage() {
             <div className="space-y-6">
               <div className="flex items-center space-x-4">
                 <div className="w-14 h-14 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 flex items-center justify-center shadow-gold">
-                  <GiCroissant className="text-2xl text-white" />
+                  <Cake size={28} strokeWidth={2} className="text-white" />
                 </div>
                 <div>
                   <h3 className="text-2xl font-black text-white font-cinzel">KOKEN</h3>
@@ -839,19 +859,25 @@ function LandingPage() {
           {/* Copyright y redes */}
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <p className="text-white/40 text-sm font-cormorant">
-              © 2024 Koken. Todos los derechos reservados. Hecho con ❤️ en Mar del Plata.
+              © 2025 Koken. Todos los derechos reservados. Hecho con ❤️ en Mar del Plata.
             </p>
             
             <div className="flex items-center gap-4">
               <span className="text-white/40 text-sm font-cormorant">Síguenos:</span>
               <div className="flex gap-3">
-                {[<FiInstagram />, <FiFacebook />].map((icon, idx) => (
+                {[
+                  { icon: <FiInstagram />, link: 'https://www.instagram.com/koken.mdq/', name: 'Instagram' },
+                  { icon: <FiFacebook />, link: 'https://www.facebook.com/koken.mdq/', name: 'Facebook' }
+                ].map((social, idx) => (
                   <a
                     key={idx}
-                    href="#"
+                    href={social.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
                     className="w-10 h-10 rounded-lg bg-white/5 hover:bg-gradient-to-br hover:from-gold-400 hover:to-gold-600 border border-white/10 hover:border-gold-400 flex items-center justify-center text-white/60 hover:text-white transition-all duration-300 hover:scale-110 text-lg"
                   >
-                    {icon}
+                    {social.icon}
                   </a>
                 ))}
               </div>
