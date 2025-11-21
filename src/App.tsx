@@ -139,7 +139,7 @@ function ServiciosSection() {
             <img 
               src={logoKoken} 
               alt="Koken Logo" 
-              className="w-18 h-18 md:w-24 md:h-24 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+              className="w-16 h-16 md:w-24 md:h-24 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
             />
           </div>
         </div>
@@ -972,7 +972,7 @@ function LandingPage() {
         <div className="max-w-6xl mx-auto">
           {/* Encabezado centrado */}
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-black font-cinzel leading-tight text-charcoal-900">
+            <h2 className="text-[1.6rem] md:text-4xl lg:text-5xl font-black font-cinzel leading-tight text-charcoal-900">
               Visítanos en nuestro <span className="text-primary">local</span>
             </h2>
           </div>
