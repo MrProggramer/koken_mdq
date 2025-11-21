@@ -317,7 +317,7 @@ function ServiciosSection() {
 function LandingPage() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const [showBadge, setShowBadge] = useState(true)
+  // const [showBadge, setShowBadge] = useState(true) // Badge siempre visible ahora
 
   useEffect(() => {
     const handleScroll = () => {
@@ -329,17 +329,18 @@ function LandingPage() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
-  useEffect(() => {
-    const handleResize = () => {
-      setShowBadge(window.innerHeight >= 697)
-    }
-    
-    // Check initial size
-    handleResize()
-    
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
+  // Badge siempre visible - useEffect comentado
+  // useEffect(() => {
+  //   const handleResize = () => {
+  //     setShowBadge(window.innerHeight >= 697)
+  //   }
+  //   
+  //   // Check initial size
+  //   handleResize()
+  //   
+  //   window.addEventListener('resize', handleResize)
+  //   return () => window.removeEventListener('resize', handleResize)
+  // }, [])
 
   return (
     <div className="min-h-screen bg-cream-50 overflow-x-hidden relative">
@@ -546,20 +547,20 @@ function LandingPage() {
         </div>
       </header>
 
-      {/* Hero Section - Armonioso y Equilibrado */}
+      {/* Hero Section - Optimizado para Desktop/Notebook */}
       <section className="relative h-screen flex items-center overflow-hidden">
         {/* Fondo para Desktop - Imagen única */}
         <div className="hidden lg:block absolute inset-0">
           <img 
             src={maestraImg} 
             alt="Fondo Koken" 
-            className="w-full h-full object-cover scale-110"
+            className="w-full h-full object-cover scale-105"
           />
           {/* Overlay degradado más sutil y elegante */}
-          <div className="absolute inset-0 bg-gradient-to-br from-charcoal-900/60 via-charcoal-900/40 to-primary/30"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-charcoal-900/50 via-charcoal-900/35 to-primary/25"></div>
           {/* Vignette efecto para enfocar el centro */}
           <div className="absolute inset-0" style={{
-            background: 'radial-gradient(circle at center, transparent 0%, transparent 40%, rgba(0,0,0,0.4) 100%)'
+            background: 'radial-gradient(ellipse at center, transparent 0%, transparent 50%, rgba(0,0,0,0.3) 100%)'
           }}></div>
         </div>
 
@@ -583,94 +584,109 @@ function LandingPage() {
           <div className="absolute inset-0 bg-gradient-to-br from-charcoal-900/70 via-charcoal-900/60 to-charcoal-900/70"></div>
         </div>
 
-        {/* Efectos de luz mejorados */}
-        <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-400/5 rounded-full blur-3xl animate-breathe"></div>
-        <div className="absolute top-1/2 right-1/3 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
+        {/* Efectos de luz sutiles */}
+        <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gold-400/8 rounded-full blur-3xl animate-breathe"></div>
+        <div className="absolute top-1/2 right-1/4 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] bg-primary/6 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '4s' }}></div>
         
-        <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-20 pb-8 lg:py-0">
-          <div className="max-w-7xl mx-auto w-full">
-            {/* Grid simple y equilibrado */}
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-48 items-center justify-items-center">
+        <div className="relative z-10 w-full h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 xl:px-12 pt-20 pb-8 lg:py-0">
+          <div className="max-w-5xl lg:max-w-6xl mx-auto w-full">
+            {/* Grid optimizado para desktop/notebook */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 xl:gap-20 items-center justify-items-center">
               
-              {/* 🎨 IZQUIERDA - Logo Limpio y Elegante */}
+              {/* 🎨 IZQUIERDA - Logo y Badge */}
               <div className="flex flex-col items-center justify-center opacity-0 animate-fade-in-up order-1 w-full" style={{ animationDelay: '0.2s' }}>
                 
-                {/* Logo con efecto glow y resplandor */}
-                <div className="relative group w-3/4 mx-auto">
-                  {/* Resplandor de fondo animado */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/30 via-gold-400/30 to-secondary/30 rounded-full blur-3xl animate-pulse group-hover:scale-110 transition-transform duration-700"></div>
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold-300/20 to-primary/20 rounded-full blur-2xl animate-breathe"></div>
+                {/* Logo con tamaño ajustado */}
+                <div className="relative group w-full max-w-[180px] sm:max-w-[200px] lg:max-w-[230px] xl:max-w-[250px]">
+                  {/* Resplandor de fondo elegante */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/20 via-gold-400/20 to-primary/20 rounded-full blur-[40px] animate-pulse group-hover:scale-110 transition-transform duration-700"></div>
+                  <div className="absolute inset-0 bg-gradient-to-br from-gold-300/12 to-primary/12 rounded-full blur-2xl animate-breathe"></div>
                   
-                  {/* Logo con filtros y efectos */}
+                  {/* Logo reducido 10% */}
                   <div className="relative flex justify-center">
                     <img 
                       src={logoKoken} 
                       alt="Koken Pastelería" 
-                      className="w-40 h-40 sm:w-44 sm:h-44 md:w-48 md:h-48 lg:w-60 lg:h-60 object-contain animate-floatSoft drop-shadow-[0_0_25px_rgba(236,72,153,0.4)] hover:drop-shadow-[0_0_40px_rgba(236,72,153,0.6)] transition-all duration-700 hover:scale-105 filter brightness-110"
+                      className="w-[127px] h-[127px] sm:w-[142px] sm:h-[142px] lg:w-[175px] lg:h-[175px] xl:w-[190px] xl:h-[190px] object-contain animate-floatSoft hover:scale-105 transition-all duration-700"
                       style={{
-                        filter: 'drop-shadow(0 0 30px rgba(251, 191, 36, 0.3)) drop-shadow(0 0 15px rgba(236, 72, 153, 0.4))'
+                        filter: 'drop-shadow(0 8px 20px rgba(251, 191, 36, 0.2)) drop-shadow(0 4px 12px rgba(236, 72, 153, 0.25)) brightness(1.1)'
                       }}
                     />
                   </div>
                 </div>
                 
-                {/* Badge equilibrado - semi-transparente */}
-                {showBadge && (
-                  <div className="mt-6 lg:mt-24 bg-white/55 backdrop-blur-xl border-2 border-gold-400/70 rounded-2xl px-6 py-3 lg:px-8 lg:py-4 transition-all duration-500 hover:scale-105 hover:bg-white/65">
-                    <div className="flex items-center gap-4 lg:gap-6">
-                      <div className="text-center border-r-2 border-gold-400/60 pr-4 lg:pr-6">
-                        <div className="text-2xl lg:text-3xl font-black text-charcoal-900 font-cinzel">100%</div>
-                        <div className="text-xs lg:text-sm text-charcoal-800 font-cormorant font-bold uppercase tracking-wider">Artesanal</div>
+                {/* Badge con transparencia intermedia y más espacio */}
+                <div className="relative mt-8 sm:mt-9 lg:mt-12 xl:mt-14 group">
+                  {/* Glow effect equilibrado */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-gold-400/15 via-gold-300/20 to-gold-400/15 blur-xl rounded-2xl opacity-50 group-hover:opacity-80 transition-opacity duration-500"></div>
+                  
+                  {/* Badge principal - transparencia intermedia */}
+                  <div className="relative bg-gradient-to-br from-cream-50/60 via-white/55 to-gold-50/50 backdrop-blur-lg border-2 border-gold-400/65 rounded-2xl px-5 py-2.5 sm:px-6 sm:py-3 lg:px-8 lg:py-3.5 xl:px-10 xl:py-4 transition-all duration-500 hover:scale-105 hover:border-gold-400/85 hover:bg-white/65 shadow-[0_10px_25px_rgba(0,0,0,0.12),0_0_18px_rgba(251,191,36,0.1)]">
+                    <div className="flex items-center gap-3 sm:gap-4 lg:gap-6 xl:gap-8">
+                      <div className="text-center border-r-2 border-gold-500/60 pr-3 sm:pr-4 lg:pr-6 xl:pr-8">
+                        <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-black text-charcoal-900 font-cinzel leading-none tracking-tight">100%</div>
+                        <div className="text-[9px] sm:text-[10px] lg:text-xs xl:text-sm text-charcoal-600 font-cormorant font-bold uppercase tracking-wider mt-0.5 lg:mt-1">Artesanal</div>
                       </div>
                       <div className="text-center">
-                        <div className="text-2xl lg:text-3xl font-black bg-gradient-to-r from-primary to-gold-600 bg-clip-text text-transparent font-cinzel">PREMIUM</div>
-                        <div className="text-xs lg:text-sm text-charcoal-800 font-cormorant font-bold uppercase tracking-wider">Calidad</div>
+                        <div className="text-xl sm:text-2xl lg:text-3xl xl:text-4xl font-black bg-gradient-to-r from-primary via-[#ec4899] to-primary bg-clip-text text-transparent font-cinzel leading-none tracking-tight">PREMIUM</div>
+                        <div className="text-[9px] sm:text-[10px] lg:text-xs xl:text-sm text-charcoal-600 font-cormorant font-bold uppercase tracking-wider mt-0.5 lg:mt-1">Calidad</div>
                       </div>
                     </div>
+                    
+                    {/* Brillo interior equilibrado */}
+                    <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-transparent via-white/8 to-white/15 pointer-events-none"></div>
                   </div>
-                )}
+                </div>
               </div>
 
-              {/* 📸 DERECHA - Imagen Limpia y Balanceada */}
-              <div className="flex justify-center items-center opacity-0 animate-fade-in-up order-2 lg:order-2 w-full" style={{ animationDelay: '0.4s' }}>
-                <div className="relative group w-3/4 max-w-xs sm:max-w-sm lg:max-w-md mx-auto">
+              {/* 📸 DERECHA - Imagen ajustada y centrada verticalmente */}
+              <div className="flex justify-center items-center opacity-0 animate-fade-in-up order-2 w-full mt-2 lg:mt-3" style={{ animationDelay: '0.4s' }}>
+                <div className="relative group w-full max-w-[233px] sm:max-w-[257px] lg:max-w-[285px] xl:max-w-[309px]">
                   
-                  {/* Imagen simple con marco elegante */}
-                  <div className="relative aspect-[3/4] rounded-[30px] lg:rounded-[50px] overflow-hidden border border-white/30 group-hover:border-white/40 transition-all duration-700" style={{
-                    boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 0 40px rgba(236, 72, 153, 0.1)'
+                  {/* Imagen con marco premium - agrandada 35% */}
+                  <div className="relative aspect-[3/4] rounded-[28px] lg:rounded-[35px] overflow-hidden border-[3px] border-white/40 shadow-2xl group-hover:border-white/50 transition-all duration-700 group-hover:scale-[1.02]" style={{
+                    boxShadow: '0 28px 55px rgba(0, 0, 0, 0.3), 0 0 45px rgba(236, 72, 153, 0.15), inset 0 0 0 1px rgba(255,255,255,0.1)'
                   }}>
                     <img 
                       src={maestra2Img} 
                       alt="Koken Pastelería" 
-                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+                      className="w-full h-full object-cover object-center group-hover:scale-110 transition-transform duration-1000 ease-out"
                     />
                     
-                    {/* Overlay suave para profundidad */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/40 via-transparent to-transparent"></div>
+                    {/* Overlay elegante */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/25 via-transparent to-transparent"></div>
                     
-                    {/* Marco interior minimalista */}
-                    <div className="absolute inset-4 lg:inset-8 border border-white/10 rounded-[20px] lg:rounded-[40px] pointer-events-none"></div>
+                    {/* Marco interior refinado */}
+                    <div className="absolute inset-5 lg:inset-6 border-2 border-white/15 rounded-[20px] lg:rounded-[26px] pointer-events-none group-hover:border-white/25 transition-colors duration-700"></div>
+                    
+                    {/* Efecto de brillo en hover */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-tr from-transparent via-white/5 to-transparent"></div>
                   </div>
 
-                  {/* Solo una decoración elegante en esquina */}
-                  <div className="hidden lg:block absolute -top-6 -right-6 w-24 h-24 border-t-2 border-r-2 border-primary/20 rounded-tr-[30px] group-hover:border-primary/30 transition-all duration-700"></div>
+                  {/* Decoraciones elegantes */}
+                  <div className="hidden lg:block absolute -top-3 -right-3 w-14 h-14 border-t-[3px] border-r-[3px] border-gold-400/30 rounded-tr-[18px] group-hover:border-gold-400/50 group-hover:scale-110 transition-all duration-700"></div>
+                  <div className="hidden lg:block absolute -bottom-3 -left-3 w-14 h-14 border-b-[3px] border-l-[3px] border-primary/30 rounded-bl-[18px] group-hover:border-primary/50 group-hover:scale-110 transition-all duration-700"></div>
+                  
+                  {/* Glow effect sutil */}
+                  <div className="absolute -inset-4 bg-gradient-to-r from-primary/10 via-gold-400/10 to-primary/10 blur-2xl -z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
                 </div>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Scroll indicator minimalista */}
-        <div className="hidden lg:flex absolute bottom-10 left-1/2 -translate-x-1/2 z-20">
-          <div className="flex flex-col items-center gap-2 opacity-40 hover:opacity-70 transition-opacity duration-500">
+        {/* Scroll indicator elegante */}
+        <div className="hidden lg:flex absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
+          <div className="flex flex-col items-center gap-2 opacity-50 hover:opacity-80 transition-opacity duration-500 cursor-pointer">
+            <span className="text-white text-xs font-cormorant uppercase tracking-widest mb-1">Descubre más</span>
             <svg 
-              className="w-5 h-5 text-white animate-bounce" 
-              style={{ animationDuration: '2.5s' }}
+              className="w-6 h-6 text-white animate-bounce" 
+              style={{ animationDuration: '2s' }}
               fill="none" 
               stroke="currentColor" 
               viewBox="0 0 24 24"
             >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
             </svg>
           </div>
         </div>
@@ -714,26 +730,6 @@ function LandingPage() {
                   ></div>
                 </div>
                 
-                {/* Overlay premium con glassmorphism mejorado */}
-                <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/95 via-charcoal-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-3xl">
-                  <div className="absolute bottom-0 left-0 right-0 p-6 transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
-                    <div className="flex items-center justify-between">
-                      <div className="flex-1">
-                        <p className="text-white font-playfair font-bold text-lg mb-1">Delicia Premium</p>
-                        <p className="text-gold-300 font-cormorant text-sm flex items-center gap-1">
-                          Ver detalles 
-                          <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                          </svg>
-                        </p>
-                      </div>
-                      <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-primary to-gold-400 backdrop-blur-sm flex items-center justify-center border-2 border-white/30 shadow-lg group-hover:rotate-12 transition-transform duration-500">
-                        <Sparkles className="text-white" size={24} strokeWidth={2.5} />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
                 {/* Borde dorado animado en hover */}
                 <div className="absolute inset-0 border-4 border-transparent group-hover:border-gold-400/60 rounded-3xl transition-all duration-500"></div>
                 
