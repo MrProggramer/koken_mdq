@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react'
 import { FiInstagram, FiFacebook, FiMenu, FiX } from 'react-icons/fi'
-import { FaWhatsapp } from 'react-icons/fa'
+import { FaWhatsapp, FaAward } from 'react-icons/fa'
 import { IoLocationSharp } from 'react-icons/io5'
 import { HiMail } from 'react-icons/hi'
+import { HiSparkles, HiUserGroup } from 'react-icons/hi2'
 import { ShoppingBag, Users, Sparkles, Cake, PartyPopper, Heart, Coffee } from 'lucide-react'
 
 // Importar logo e imagen maestra
@@ -57,7 +58,7 @@ function ServiciosSection() {
       icon: <Cake size={40} strokeWidth={2} />,
       title: 'Cumpleaños',
       shortDesc: 'Celebraciones únicas',
-      fullDesc: 'Convertimos cada cumpleaños en una experiencia inolvidable. Diseñamos tortas personalizadas con técnicas artesanales y los mejores ingredientes. Desde tortas temáticas para niños hasta elegantes creaciones para adultos, cada detalle está pensado para sorprender. Ofrecemos asesoramiento personalizado, degustación de sabores y diseños únicos que reflejan la personalidad del festejado.',
+      fullDesc: 'Convertimos cada cumpleaños en una <span class="font-semibold text-charcoal-800">experiencia inolvidable</span>. Diseñamos <span class="font-semibold text-charcoal-800">tortas personalizadas</span> con <span class="font-semibold text-charcoal-800">técnicas artesanales</span> y los <span class="font-semibold text-charcoal-800">mejores ingredientes</span>. Desde <span class="font-semibold text-charcoal-800">tortas temáticas</span> para niños hasta <span class="font-semibold text-charcoal-800">elegantes creaciones</span> para adultos, cada detalle está pensado para sorprender. Ofrecemos <span class="font-semibold text-charcoal-800">asesoramiento personalizado</span>, degustación de sabores y <span class="font-semibold text-charcoal-800">diseños únicos</span> que reflejan la personalidad del festejado.',
       color: 'from-pink-400 to-pink-600',
       features: ['Diseños personalizados', 'Sabores a medida', 'Decoración temática', 'Asesoramiento incluido'],
       images: [
@@ -72,7 +73,7 @@ function ServiciosSection() {
       icon: <PartyPopper size={40} strokeWidth={2} />,
       title: 'Eventos Corporativos',
       shortDesc: 'Catering profesional',
-      fullDesc: 'Impresiona a tus clientes y colaboradores con nuestro catering premium. Ofrecemos desde desayunos ejecutivos hasta coffee breaks y mesas dulces corporativas. Cada producto es elaborado con estándares de calidad profesional, presentación impecable y sabores que dejan huella. Nos adaptamos a tu presupuesto y necesidades específicas del evento.',
+      fullDesc: 'Impresiona a tus clientes y colaboradores con nuestro <span class="font-semibold text-charcoal-800">catering premium</span>. Ofrecemos desde <span class="font-semibold text-charcoal-800">desayunos ejecutivos</span> hasta <span class="font-semibold text-charcoal-800">coffee breaks</span> y <span class="font-semibold text-charcoal-800">mesas dulces corporativas</span>. Cada producto es elaborado con <span class="font-semibold text-charcoal-800">estándares de calidad profesional</span>, <span class="font-semibold text-charcoal-800">presentación impecable</span> y sabores que dejan huella. Nos adaptamos a tu presupuesto y necesidades específicas del evento.',
       color: 'from-blue-400 to-blue-600',
       features: ['Presentación premium', 'Variedad de productos', 'Servicio puntual', 'Presupuestos flexibles'],
       images: [
@@ -87,7 +88,7 @@ function ServiciosSection() {
       icon: <Heart size={40} strokeWidth={2} />,
       title: 'Bodas',
       shortDesc: 'Día soñado',
-      fullDesc: 'Tu boda merece una torta tan especial como ese día. Creamos tortas nupciales que son verdaderas obras de arte, combinando diseño elegante, sabores exquisitos y técnicas de alta repostería. Trabajamos contigo desde el concepto hasta el día de tu boda, asegurando que cada detalle sea perfecto. Ofrecemos sesiones de degustación y diseños exclusivos.',
+      fullDesc: 'Tu boda merece una <span class="font-semibold text-charcoal-800">torta tan especial</span> como ese día. Creamos <span class="font-semibold text-charcoal-800">tortas nupciales</span> que son verdaderas <span class="font-semibold text-charcoal-800">obras de arte</span>, combinando <span class="font-semibold text-charcoal-800">diseño elegante</span>, <span class="font-semibold text-charcoal-800">sabores exquisitos</span> y <span class="font-semibold text-charcoal-800">técnicas de alta repostería</span>. Trabajamos contigo desde el concepto hasta el día de tu boda, asegurando que cada detalle sea perfecto. Ofrecemos <span class="font-semibold text-charcoal-800">sesiones de degustación</span> y <span class="font-semibold text-charcoal-800">diseños exclusivos</span>.',
       color: 'from-purple-400 to-purple-600',
       features: ['Diseño exclusivo', 'Degustación privada', 'Múltiples pisos', 'Decoración con flores'],
       images: [
@@ -102,7 +103,7 @@ function ServiciosSection() {
       icon: <Coffee size={40} strokeWidth={2} />,
       title: 'Desayunos',
       shortDesc: 'Mañanas especiales',
-      fullDesc: 'Sorprende con un desayuno premium a domicilio. Nuestras cajas incluyen productos recién horneados: croissants artesanales, medialunas de manteca, muffins, panes especiales y más. Perfectos para regalar o disfrutar en familia. Cada desayuno viene presentado en packaging especial con detalles decorativos. Ideal para cumpleaños, aniversarios o simplemente alegrar el día.',
+      fullDesc: 'Sorprende con un <span class="font-semibold text-charcoal-800">desayuno premium a domicilio</span>. Nuestras cajas incluyen <span class="font-semibold text-charcoal-800">productos recién horneados</span>: <span class="font-semibold text-charcoal-800">croissants artesanales</span>, <span class="font-semibold text-charcoal-800">medialunas de manteca</span>, muffins, panes especiales y más. Perfectos para regalar o disfrutar en familia. Cada desayuno viene presentado en <span class="font-semibold text-charcoal-800">packaging especial</span> con detalles decorativos. Ideal para cumpleaños, aniversarios o simplemente alegrar el día.',
       color: 'from-amber-400 to-amber-600',
       features: ['Productos frescos', 'Delivery incluido', 'Packaging especial', 'Opciones veganas'],
       images: [
@@ -129,7 +130,7 @@ function ServiciosSection() {
       <div className="max-w-6xl mx-auto w-full">
         {/* Encabezado */}
         <div className="text-center mb-8 md:mb-6">
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-black text-charcoal-900 mb-3 font-cinzel">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-black text-charcoal-900 mb-3 font-cinzel leading-tight">
             Para Cada <span className="text-primary">Ocasión Especial</span>
           </h2>
           
@@ -138,7 +139,7 @@ function ServiciosSection() {
             <img 
               src={logoKoken} 
               alt="Koken Logo" 
-              className="w-12 h-12 md:w-16 md:h-16 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
+              className="w-18 h-18 md:w-24 md:h-24 object-contain opacity-80 hover:opacity-100 transition-opacity duration-300"
             />
           </div>
         </div>
@@ -162,12 +163,12 @@ function ServiciosSection() {
                   {service.icon}
                 </div>
                 <div className="text-left">
-                  <div className={`font-playfair font-bold text-sm md:text-base transition-colors ${
+                  <div className={`font-playfair font-bold text-lg md:text-xl transition-colors ${
                     selectedService === idx ? 'text-primary' : 'text-charcoal-900 group-hover:text-primary'
                   }`}>
                     {service.title}
                   </div>
-                  <div className="text-[10px] md:text-xs text-charcoal-600 font-cormorant">
+                  <div className="text-sm md:text-base text-charcoal-600 font-cormorant">
                     {service.shortDesc}
                   </div>
                 </div>
@@ -191,14 +192,13 @@ function ServiciosSection() {
                   </div>
                 </div>
                 
-                <h3 className="text-xl md:text-3xl lg:text-4xl font-black text-charcoal-900 mb-2 font-cinzel animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+                <h3 className="text-3xl md:text-5xl lg:text-6xl font-black text-charcoal-900 mb-2 font-cinzel animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
                   {services[selectedService].title}
                 </h3>
                 
                 <div className="h-1 w-12 md:w-16 bg-gradient-to-r from-primary to-gold-400 rounded-full mb-2 md:mb-3 mx-auto md:mx-0 animate-fade-in-up" style={{ animationDelay: '0.2s' }}></div>
                 
-                <p className="text-xs md:text-base text-charcoal-700 leading-relaxed font-cormorant mb-3 md:mb-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
-                  {services[selectedService].fullDesc}
+                <p className="text-base md:text-xl text-charcoal-700 leading-relaxed font-cormorant mb-3 md:mb-4 animate-fade-in-up" style={{ animationDelay: '0.3s' }} dangerouslySetInnerHTML={{ __html: services[selectedService].fullDesc }}>
                 </p>
 
                 {/* Features */}
@@ -206,7 +206,7 @@ function ServiciosSection() {
                   {services[selectedService].features.map((feature, idx) => (
                     <div key={idx} className="flex items-center gap-1.5 md:gap-2 text-charcoal-700">
                       <div className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-primary flex-shrink-0"></div>
-                      <span className="font-cormorant text-[11px] md:text-sm">{feature}</span>
+                      <span className="font-cormorant text-base md:text-lg">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -299,7 +299,7 @@ function ServiciosSection() {
                 href="https://wa.me/5492235242957"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-gold-400 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-playfair font-bold text-sm md:text-base shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center gap-2 bg-gradient-to-r from-primary to-gold-400 text-white px-5 py-2.5 md:px-6 md:py-3 rounded-full font-playfair font-bold text-lg md:text-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
               >
                 <span>Consultar por {services[selectedService].title}</span>
                 <svg className="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -355,9 +355,12 @@ function LandingPage() {
             isScrolled ? 'justify-between' : 'justify-between'
           }`}>
             {/* Logo - Aparece solo al hacer scroll */}
-            <div className={`flex items-center group cursor-pointer transition-all duration-700 ${
-              isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none absolute left-4 sm:left-6 lg:left-8'
-            }`}>
+            <div 
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              className={`flex items-center group cursor-pointer transition-all duration-700 ${
+                isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none absolute left-4 sm:left-6 lg:left-8'
+              }`}
+            >
               <h1 className="font-cooper font-black tracking-tight text-primary text-2xl md:text-3xl lg:text-4xl transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(220,60,70,0.6)] group-hover:text-shadow-lg" style={{ 
                 textShadow: 'none',
                 transition: 'all 0.5s ease'
@@ -779,14 +782,14 @@ function LandingPage() {
 
               <div className="space-y-6 font-cormorant text-lg text-charcoal-600 leading-relaxed">
                 <p className="text-xl">
-                  En <span className="font-bold text-charcoal-900">Koken</span>, cada pastel, cada croissant y cada cupcake cuenta una historia. 
-                  Desde nuestra fundación en Mar del Plata, nos hemos dedicado a crear experiencias 
-                  dulces inolvidables combinando técnicas tradicionales con ingredientes de la más alta calidad.
+                  En <span className="font-bold text-charcoal-900">Koken</span>, cada pastel, cada croissant y cada cupcake cuenta una <span className="font-bold text-primary">historia</span>. 
+                  Desde nuestra fundación en <span className="font-semibold text-charcoal-800">Mar del Plata</span>, nos hemos dedicado a crear <span className="font-semibold text-charcoal-800">experiencias 
+                  dulces inolvidables</span> combinando <span className="font-semibold text-charcoal-800">técnicas tradicionales</span> con <span className="font-semibold text-charcoal-800">ingredientes de la más alta calidad</span>.
                 </p>
                 
                 <p>
-                  Nuestro equipo de pasteleros apasionados trabaja cada día para ofrecerte productos 
-                  frescos, artesanales y con el toque especial que nos caracteriza. Porque creemos que 
+                  Nuestro equipo de <span className="font-semibold text-charcoal-800">pasteleros apasionados</span> trabaja cada día para ofrecerte productos 
+                  <span className="font-semibold text-charcoal-800">frescos, artesanales</span> y con el toque especial que nos caracteriza. Porque creemos que 
                   la repostería no es solo un trabajo, <span className="font-bold text-primary italic">es nuestro arte</span>.
                 </p>
               </div>
@@ -794,9 +797,9 @@ function LandingPage() {
               {/* Stats premium mejorados - horizontal con animación dinámica */}
               <div className="grid grid-cols-3 gap-3 sm:gap-6 pt-8 max-w-5xl mx-auto">
                 {[
-                  { number: '15+', label: 'Años de Experiencia', icon: '🏆', delay: '0s' },
-                  { number: '5000+', label: 'Clientes Felices', icon: '💝', delay: '0.15s' },
-                  { number: '5.0', label: 'Valoración', icon: '⭐', delay: '0.3s' }
+                  { number: '15+', label: 'Años de Experiencia', icon: <FaAward size={40} className="text-gold-500" />, delay: '0s' },
+                  { number: '5000+', label: 'Clientes Felices', icon: <HiUserGroup size={44} className="text-primary" />, delay: '0.15s' },
+                  { number: '5.0', label: 'Valoración', icon: <HiSparkles size={42} className="text-gold-400" />, delay: '0.3s' }
                 ].map((stat, idx) => (
                   <div 
                     key={idx} 
@@ -820,7 +823,7 @@ function LandingPage() {
                       {/* Contenido */}
                       <div className="relative flex flex-col items-center gap-2 sm:gap-2.5 text-center">
                         <div 
-                          className="text-2xl sm:text-3xl transition-all duration-500"
+                          className="text-3xl sm:text-4xl transition-all duration-500"
                           style={{
                             animation: 'none',
                           }}
@@ -1056,31 +1059,31 @@ function LandingPage() {
       </section>
 
       {/* Footer Premium */}
-      <footer className="bg-gradient-to-b from-charcoal-900 via-charcoal-800 to-charcoal-900 py-12 px-4 border-t-2 border-gold-400/30">
+      <footer className="bg-gradient-to-b from-charcoal-900 via-charcoal-800 to-charcoal-900 py-6 md:py-8 px-4 border-t-2 border-gold-400/30">
         <div className="max-w-6xl mx-auto">
           {/* Contenido principal del footer */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-4 md:mb-6">
             {/* Logo y descripción */}
-            <div className="flex flex-col items-center text-center space-y-4">
+            <div className="flex flex-col items-center text-center space-y-2 md:space-y-3">
               <img 
                 src={logoKoken} 
                 alt="Koken Logo" 
-                className="w-24 h-24 object-contain"
+                className="w-20 h-20 md:w-24 md:h-24 object-contain"
               />
-              <p className="text-white/80 font-cormorant leading-relaxed text-sm">
+              <p className="hidden md:block text-white/80 font-cormorant leading-relaxed text-lg md:text-xl">
                 Endulzando vidas desde 2010 con pasión, dedicación y los mejores ingredientes.
               </p>
             </div>
 
-            {/* Links rápidos */}
-            <div>
-              <h4 className="text-white font-playfair font-bold text-base mb-4">Enlaces Rápidos</h4>
-              <ul className="space-y-2">
+            {/* Links rápidos - oculto en mobile */}
+            <div className="hidden md:block">
+              <h4 className="text-white font-playfair font-bold text-xl md:text-2xl mb-2 md:mb-3">Enlaces Rápidos</h4>
+              <ul className="space-y-1.5 md:space-y-2">
                 {['Productos', 'Nosotros', 'Servicios', 'Contacto'].map((link) => (
                   <li key={link}>
                     <a 
                       href={`#${link.toLowerCase()}`}
-                      className="text-white/70 hover:text-gold-400 transition-colors font-cormorant text-sm flex items-center gap-2 group"
+                      className="text-white/70 hover:text-gold-400 transition-colors font-cormorant text-lg md:text-xl flex items-center gap-2 group"
                     >
                       <span className="text-gold-400 opacity-0 group-hover:opacity-100 transition-opacity">→</span>
                       {link}
@@ -1092,8 +1095,8 @@ function LandingPage() {
 
             {/* Horarios */}
             <div>
-              <h4 className="text-white font-playfair font-bold text-base mb-4">Horarios</h4>
-              <ul className="space-y-2 text-white/70 font-cormorant text-sm">
+              <h4 className="text-white font-playfair font-bold text-xl md:text-2xl mb-2 md:mb-3">Horarios</h4>
+              <ul className="space-y-1.5 md:space-y-2 text-white/70 font-cormorant text-lg md:text-xl">
                 <li className="flex justify-between">
                   <span>Lun - Vie</span>
                   <span className="text-gold-400 font-semibold">9:00 - 20:00</span>
@@ -1111,16 +1114,16 @@ function LandingPage() {
           </div>
 
           {/* Línea divisoria */}
-          <div className="h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent mb-6"></div>
+          <div className="h-px bg-gradient-to-r from-transparent via-gold-400/30 to-transparent mb-3 md:mb-4"></div>
 
           {/* Copyright y redes */}
-          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-white/60 text-xs md:text-sm font-cormorant">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-3 md:gap-4">
+            <p className="text-white/60 text-base md:text-lg font-cormorant">
               © 2025 Koken. Todos los derechos reservados. Hecho con ❤️ en Mar del Plata.
             </p>
             
             <div className="flex items-center gap-3">
-              <span className="text-white/60 text-xs md:text-sm font-cormorant">Síguenos:</span>
+              <span className="text-white/60 text-base md:text-lg font-cormorant">Síguenos:</span>
               <div className="flex gap-2">
                 {[
                   { icon: <FiInstagram />, link: 'https://www.instagram.com/koken.mdq/', name: 'Instagram' },
