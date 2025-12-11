@@ -83,68 +83,44 @@ function LandingPage() {
           : 'bg-transparent'
       }`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`flex items-center h-12 md:h-14 transition-all duration-700 ${
-            isScrolled ? 'justify-between' : 'justify-between'
-          }`}>
-            {/* Logo - Aparece solo al hacer scroll */}
-            <div className={`flex items-center group cursor-pointer transition-all duration-700 ${
-              isScrolled ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4 pointer-events-none absolute left-4 sm:left-6 lg:left-8'
-            }`}>
-              <h1 className="font-cooper font-black tracking-tight text-primary text-2xl md:text-3xl lg:text-4xl transition-all duration-500 group-hover:scale-110 group-hover:drop-shadow-[0_0_15px_rgba(220,60,70,0.6)] group-hover:text-shadow-lg" style={{ 
+          <div className="flex items-center justify-between h-12 md:h-14">
+            {/* Logo - Siempre visible */}
+            <div className="flex items-center group cursor-pointer">
+              <h1 className="font-cooper font-black tracking-tight text-primary text-2xl md:text-3xl lg:text-4xl transition-all duration-500 group-hover:scale-110" style={{ 
                 textShadow: 'none',
                 transition: 'all 0.5s ease'
               }}>
-                <span className="inline-block group-hover:animate-pulse">KOKEN</span>
+                <span className="inline-block group-hover:animate-pulse">koken</span>
               </h1>
             </div>
             
-            {/* Desktop Navigation */}
-            <nav className={`hidden lg:flex items-center transition-all duration-700 ${
-              isScrolled ? 'gap-20' : 'flex-1 justify-center gap-32'
-            }`}>
-              {['Productos', 'Nosotros', 'Servicios'].map((item) => (
+            {/* Desktop Navigation - Centrado */}
+            <nav className="hidden lg:flex items-center gap-12">
+              {['PRODUCTOS', 'NOSOTROS', 'SERVICIOS'].map((item) => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
-                  className={`relative font-cormorant text-2xl font-medium transition-all duration-300 group ${
+                  className={`relative font-cormorant text-sm font-semibold tracking-wider transition-all duration-300 group uppercase ${
                     isScrolled 
                       ? 'text-charcoal-700 hover:text-gold-600' 
                       : 'text-white/90 hover:text-white'
                   }`}
                 >
                   {item}
-                  <span className={`absolute -bottom-1 left-0 w-0 h-1 transition-all duration-300 group-hover:w-full ${
+                  <span className={`absolute -bottom-1 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full ${
                     isScrolled ? 'bg-gold-500' : 'bg-white'
                   }`}></span>
                 </a>
               ))}
             </nav>
 
-            {/* CTA Button Desktop */}
-            <div className={`hidden lg:flex items-center transition-all duration-700`}>
+            {/* CTA Button - Derecha */}
+            <div className="hidden lg:flex items-center">
               <a
                 href="#contacto"
-                className={`group relative overflow-hidden px-4 py-1 rounded-full font-cormorant font-medium text-xl tracking-wide transition-all duration-300 hover:scale-105 flex items-center gap-2 ${
-                  isScrolled
-                    ? 'bg-gradient-to-r from-gold-400 via-gold-500 to-gold-600 text-white shadow-md hover:shadow-lg'
-                    : 'bg-white text-primary border border-white shadow-[0_2px_8px_rgba(255,255,255,0.25)] hover:shadow-[0_4px_12px_rgba(255,255,255,0.35)]'
-                }`}
-                style={{
-                  boxShadow: isScrolled 
-                    ? '0 2px 10px rgba(251, 191, 36, 0.25)' 
-                    : '0 2px 8px rgba(255, 255, 255, 0.25)'
-                }}
+                className="bg-primary hover:bg-primary/90 text-white px-5 py-2 rounded-full font-cormorant font-bold text-sm tracking-widest uppercase transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg"
               >
-                <span className="relative z-10">Contactanos</span>
-                <svg 
-                  className="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                </svg>
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                ESCRIBINOS
               </a>
             </div>
 
@@ -167,12 +143,12 @@ function LandingPage() {
           isMobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
         }`}>
           <div className="bg-white/95 backdrop-blur-xl border-t border-gold-200/30 px-6 py-6 space-y-4">
-            {['Productos', 'Nosotros', 'Servicios'].map((item) => (
+            {['PRODUCTOS', 'NOSOTROS', 'SERVICIOS'].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block font-cormorant text-lg font-medium text-charcoal-700 hover:text-gold-600 transition-colors py-2"
+                className="block font-cormorant text-sm font-semibold tracking-wider text-charcoal-700 hover:text-gold-600 transition-colors py-2 uppercase"
               >
                 {item}
               </a>
@@ -180,9 +156,9 @@ function LandingPage() {
              <a
                href="#contacto"
                onClick={() => setIsMobileMenuOpen(false)}
-               className="block text-center bg-gradient-to-r from-gold-400 to-gold-600 text-white px-6 py-3 rounded-full font-cormorant font-semibold mt-4"
+               className="block text-center bg-primary hover:bg-primary/90 text-white px-6 py-3 rounded-full font-cormorant font-bold text-sm tracking-widest uppercase mt-4"
              >
-               Contactanos
+               ESCRIBINOS
              </a>
           </div>
         </div>
